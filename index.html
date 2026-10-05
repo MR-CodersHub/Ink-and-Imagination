@@ -3,241 +3,176 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ink & Imagination — Premium Handmade Greeting Cards & Stationery Studio</title>
-  <meta name="description" content="Handmade greeting cards, bespoke wedding invitations, pressed flower notelets, letterpress stationery, and custom gift tags. Handcrafted with love in India.">
-  <meta name="keywords" content="handmade greeting cards, boutique stationery studio, wedding invitations, letterpress, flower pressed cards, artisan stationery India">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Ink &amp; Imagination — Handmade Greeting Cards &amp; Stationery Studio</title>
+  <meta name="description" content="Local handmade greeting card & stationery studio. Botanical cards, personalized stationery, custom invitations, gift paper goods.">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
-
-  <!-- Announcement Bar -->
-  <div class="announcement-bar" role="banner">
-    ✦ Free Shipping Across India on Orders Above ₹1,500 &nbsp;|&nbsp; Use code <a href="products.html">BLOOM15</a> for 15% Off
-    <button class="announcement-close" aria-label="Close">×</button>
-  </div>
-
-  <!-- Navigation Bar -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="announcement-bar" role="banner">✦ Free shipping across India on orders above ₹1,500 &nbsp;|&nbsp; <a href="pricing.html">View card collections</a><button class="announcement-close" aria-label="Dismiss announcement">×</button></div>
+  <nav class="navbar" aria-label="Main navigation">
     <div class="container nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Ink & Imagination Home">
-        <span class="nav-logo-name">Ink &amp; Imagination</span>
-        <span class="nav-logo-tagline">Handcrafted Stationery Studio</span>
-      </a>
-      <ul class="nav-links" role="list">
-        <li><a href="index.html" class="nav-link active">Home</a></li>
-        <li><a href="products.html" class="nav-link">Products</a></li>
-        <li><a href="custom.html" class="nav-link">Custom Orders</a></li>
-        <li><a href="wholesale.html" class="nav-link">Wholesale</a></li>
+      <a href="index.html" class="nav-logo" aria-label="Ink and Imagination home"><span class="nav-logo-name">Ink &amp; Imagination</span><span class="nav-logo-tagline">Handcrafted Stationery Studio</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="home-niche.html" class="nav-link">Niche</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
         <li><a href="pricing.html" class="nav-link">Pricing</a></li>
-        <li><a href="blog.html" class="nav-link">Journal</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-controls">
-        <button class="nav-btn" data-theme-icon id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
-        <button class="nav-btn" data-dir-icon id="dir-toggle" aria-label="Toggle RTL">RTL</button>
+        <button class="nav-btn" id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <button class="nav-btn" id="dir-toggle" aria-label="Toggle RTL">RTL</button>
         <a href="contact.html" class="nav-cta">Enquire Now</a>
-        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
+        <button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
-
-  <!-- Mobile Drawer Menu -->
   <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
-    <a href="index.html" class="nav-link active">Home</a>
-    <a href="products.html" class="nav-link">Products</a>
-    <a href="custom.html" class="nav-link">Custom Orders</a>
-    <a href="wholesale.html" class="nav-link">Wholesale</a>
+    <a href="index.html" class="nav-link">Home 1 — General Services</a>
+    <a href="home-niche.html" class="nav-link">Home 2 — Niche Collections</a>
+    <a href="about.html" class="nav-link">About Us</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="service-detail.html" class="nav-link">Service Details</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="blog-detail.html" class="nav-link">Blog Details</a>
+    <a href="contact.html" class="nav-link">Contact Us</a>
     <a href="pricing.html" class="nav-link">Pricing</a>
-    <a href="blog.html" class="nav-link">Journal</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-    <a href="admin-dashboard.html" class="nav-link">Studio Dashboard</a>
+    <a href="login.html" class="nav-link">Login / Register</a>
+    <a href="404.html" class="nav-link">404</a>
+    <a href="coming-soon.html" class="nav-link">Coming Soon</a>
     <a href="contact.html" class="btn btn-primary" style="margin-top:1rem;justify-content:center;">Enquire Now →</a>
   </div>
 
   <main id="main-content">
-
-    <!-- HERO SECTION -->
-    <section class="hero-section" aria-label="Studio showcase hero">
+    <!-- 1. HERO -->
+    <section class="hero-section" aria-label="Premium handmade stationery hero">
       <div class="botanical-corner-tl" aria-hidden="true"></div>
       <div class="botanical-corner-br" aria-hidden="true"></div>
       <div class="container hero-grid">
-        <div class="hero-text-content">
-          <div class="section-tag-gold" style="margin-bottom:1rem;">✦ Artisan Papercraft &amp; Hand-Pressed Botanicals</div>
-          <h1 class="hero-heading">Where Every Handwritten Note Becomes a <span class="highlight-plum">Keepsake</span></h1>
-          <p class="hero-subtext">
-            Handmade with 100% recycled cotton paper, real dried botanical pressings, hand-mixed organic inks, and vintage letterpress detail in Jaipur &amp; Delhi.
-          </p>
+        <div class="hero-text-content" data-reveal>
+          <div class="section-tag-gold" style="margin-bottom:1rem;">✦ Local Handmade Greeting Card Studio — Est. 2019</div>
+          <h1 class="hero-heading">Where Every Handwritten Note Becomes a <em>Keepsake</em></h1>
+          <p class="hero-subtext">Small-batch greeting cards, personalized stationery and custom invitations — hand-pulled on recycled cotton paper with pressed botanicals, letterpress and gold foil in our Jaipur &amp; Delhi studio.</p>
           <div class="hero-cta-group">
-            <a href="products.html" class="btn btn-primary btn-lg">Explore Card Collections</a>
-            <a href="custom.html" class="btn btn-outline btn-lg">Custom Stationery Order</a>
+            <a href="services.html" class="btn btn-primary btn-lg">Explore Studio Services</a>
+            <a href="contact.html" class="btn btn-outline btn-lg">Request Custom Enquiry</a>
           </div>
           <div class="hero-features-list">
-            <div class="hero-feature-item"><span>🌿</span> 100% Recycled Cotton Paper</div>
-            <div class="hero-feature-item"><span>✨</span> Real Gold Foil Accents</div>
-            <div class="hero-feature-item"><span>💌</span> Handwritten Personalization</div>
+            <div class="hero-feature-item"><span>🌿</span> 100% recycled cotton paper</div>
+            <div class="hero-feature-item"><span>✨</span> Real pressed flowers</div>
+            <div class="hero-feature-item"><span>💌</span> Handwritten personalization</div>
           </div>
         </div>
-
-        <div class="hero-visual">
+        <div class="hero-visual" data-reveal>
           <div class="hero-image-frame">
-            <img src="images/hero-stationery.jpg" alt="Handcrafted stationery and flower-pressed cards" class="hero-img" width="560" height="420" loading="eager">
-            <div class="badge-seal rotate-slow" aria-hidden="true">
-              <span class="badge-text">HANDMADE WITH LOVE • EST. 2019 •</span>
-            </div>
+            <img src="images/hero-stationery.jpg" alt="Handcrafted stationery flat-lay with pressed flowers" class="hero-img" width="560" height="420" loading="eager" data-zoom="images/hero-stationery.jpg" tabindex="0">
+            <div class="badge-seal rotate-slow" aria-hidden="true"><span class="badge-text">HANDMADE WITH LOVE • EST. 2019 •</span></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MARQUEE TICKER -->
-    <div class="marquee-ticker" aria-hidden="true">
-      <div class="marquee-track">
-        <span>🌸 HANDMADE GREETING CARDS</span>
-        <span>✦ BESPOKE WEDDING INVITATIONS</span>
-        <span>🌿 REAL PRESSED FLOWER NOTELETS</span>
-        <span>✒️ CUSTOM CALLIGRAPHY SETS</span>
-        <span>✨ GOLD FOIL LETTERPRESS</span>
-        <span>🎁 ARTISAN GIFT WRAP &amp; TAGS</span>
-        <span>🌸 HANDMADE GREETING CARDS</span>
-        <span>✦ BESPOKE WEDDING INVITATIONS</span>
-      </div>
-    </div>
-
-    <!-- FEATURED COLLECTIONS -->
-    <section class="featured-collections-section">
+    <!-- 2. SERVICE OVERVIEW -->
+    <section aria-label="Main service overview">
       <div class="container">
-        <div class="section-header text-center">
-          <div class="section-tag-gold">CURATED ARTISAN COLLECTIONS</div>
-          <h2 class="section-title">Card Collections for Every Heartfelt Moment</h2>
-          <p class="section-subtitle">Crafted on 300 GSM handmade deckle-edge paper with natural botanical inclusions.</p>
+        <div class="section-header text-center" data-reveal>
+          <div class="section-tag-gold">STUDIO OFFERINGS</div>
+          <h2 class="section-title">One Studio, Every Paper Need</h2>
+          <p class="section-subtitle">From single heartfelt cards to full wedding suites — including boxed sets, gift stationery and bulk event orders.</p>
         </div>
-
         <div class="grid grid-3">
-          <!-- Card 1 -->
-          <div class="collection-card">
-            <div class="collection-img-wrap">
-              <img src="images/birthday-cards.jpg" alt="Botanical birthday cards" loading="lazy" class="collection-img">
-              <span class="card-badge">Best Seller</span>
-            </div>
-            <div class="collection-content">
-              <h3 class="collection-title">Botanical Birthday Series</h3>
-              <p class="collection-desc">Hand-painted floral illustrations paired with pressed cosmos &amp; golden marigold petals.</p>
-              <div class="collection-meta">
-                <span class="collection-price">From ₹280</span>
-                <a href="products.html" class="collection-link">Browse Cards →</a>
-              </div>
-            </div>
-          </div>
+          <div class="collection-card" data-reveal><div class="collection-content"><h3 class="collection-title">Handmade Greeting Cards</h3><p class="collection-desc">Birthday, wedding, thank-you, baby and everyday notes on 300 GSM deckle-edge cotton.</p><a href="service-detail.html" class="collection-link">Details →</a></div></div>
+          <div class="collection-card" data-reveal><div class="collection-content"><h3 class="collection-title">Personalized Stationery</h3><p class="collection-desc">Monogrammed notelets, letter sets and calligraphy addressing in walnut &amp; gold ink.</p><a href="service-detail.html" class="collection-link">Details →</a></div></div>
+          <div class="collection-card" data-reveal><div class="collection-content"><h3 class="collection-title">Custom Invitations &amp; Bulk</h3><p class="collection-desc">Wedding suites, event stationery and gift boxes — with clear bulk pricing and proofs.</p><a href="pricing.html" class="collection-link">See pricing →</a></div></div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Card 2 -->
-          <div class="collection-card">
-            <div class="collection-img-wrap">
-              <img src="images/wedding-stationery.jpg" alt="Wedding invitation suite" loading="lazy" class="collection-img">
-              <span class="card-badge gold">Bespoke Suite</span>
-            </div>
-            <div class="collection-content">
-              <h3 class="collection-title">Bespoke Wedding Invitations</h3>
-              <p class="collection-desc">Luxury letterpress suites featuring hand-drawn monograms, silk ribbon, and wax seals.</p>
-              <div class="collection-meta">
-                <span class="collection-price">Custom Pricing</span>
-                <a href="custom.html" class="collection-link">Request Sample →</a>
-              </div>
-            </div>
+    <!-- 3. FEATURED COLLECTIONS -->
+    <section class="featured-collections-section" aria-label="Featured greeting card collections">
+      <div class="container">
+        <div class="section-header text-center" data-reveal>
+          <div class="section-tag-gold">CURATED COLLECTIONS</div>
+          <h2 class="section-title">Cards for Every Heartfelt Moment</h2>
+          <p class="section-subtitle">Boxed sets and singles — the best of our greeting-card shelves.</p>
+        </div>
+        <div class="grid grid-3">
+          <div class="collection-card" data-reveal>
+            <div class="collection-img-wrap"><img src="images/birthday-cards.jpg" alt="Botanical birthday greeting cards" class="collection-img" loading="lazy" data-zoom="images/birthday-cards.jpg" tabindex="0"><span class="card-badge">Best Seller</span></div>
+            <div class="collection-content"><h3 class="collection-title">Botanical Birthday Series</h3><p class="collection-desc">Hand-painted florals with pressed cosmos &amp; marigold. From ₹280.</p><div class="collection-meta"><span class="collection-price">From ₹280</span><a href="service-detail.html" class="collection-link">View →</a></div></div>
           </div>
-
-          <!-- Card 3 -->
-          <div class="collection-card">
-            <div class="collection-img-wrap">
-              <img src="images/hero-stationery.jpg" alt="Thank you notelets set" loading="lazy" class="collection-img">
-            </div>
-            <div class="collection-content">
-              <h3 class="collection-title">Pressed Flower Notelets</h3>
-              <p class="collection-desc">Boxed sets of 8 deckle-edge cards with real pressed lavender, ferns, and rose petals.</p>
-              <div class="collection-meta">
-                <span class="collection-price">From ₹650 / Box</span>
-                <a href="products.html" class="collection-link">Shop Boxed Sets →</a>
-              </div>
-            </div>
+          <div class="collection-card" data-reveal>
+            <div class="collection-img-wrap"><img src="images/wedding-stationery.jpg" alt="Bespoke wedding invitation suite" class="collection-img" loading="lazy" data-zoom="images/wedding-stationery.jpg" tabindex="0"><span class="card-badge gold">Bespoke</span></div>
+            <div class="collection-content"><h3 class="collection-title">Wedding Invitation Suites</h3><p class="collection-desc">Letterpress, silk ribbon, wax seals. Custom quotes.</p><div class="collection-meta"><span class="collection-price">Custom</span><a href="service-detail.html" class="collection-link">View →</a></div></div>
+          </div>
+          <div class="collection-card" data-reveal>
+            <div class="collection-img-wrap"><img src="images/motif-gift.svg" alt="Gift stationery box and tag illustration" class="collection-img" loading="lazy"></div>
+            <div class="collection-content"><h3 class="collection-title">Pressed Notelet Gift Box</h3><p class="collection-desc">Set of 8 deckle cards with lavender &amp; fern. ₹1,850 / box.</p><div class="collection-meta"><span class="collection-price">₹1,850</span><a href="pricing.html" class="collection-link">Pricing →</a></div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CRAFTSMAN SPOTLIGHT -->
-    <section class="craft-spotlight-section">
+    <!-- 4. WHY CHOOSE -->
+    <section aria-label="Why choose Ink and Imagination">
+      <div class="container">
+        <div class="section-header text-center" data-reveal>
+          <div class="section-tag-gold">WHY OUR PAPER FEELS DIFFERENT</div>
+          <h2 class="section-title">Slow Made, Honestly Made</h2>
+        </div>
+        <div class="grid grid-3">
+          <div class="collection-card" data-reveal><div class="collection-content"><h3 class="collection-title">🌿 Real Materials</h3><p class="collection-desc">Recycled cotton rag, real petals, soy inks — no plastic-coated stock.</p></div></div>
+          <div class="collection-card" data-reveal><div class="collection-content"><h3 class="collection-title">✒️ Human Hands</h3><p class="collection-desc">12 artisan printmakers pull, press and foil every sheet in-house.</p></div></div>
+          <div class="collection-card" data-reveal><div class="collection-content"><h3 class="collection-title">💛 Personal Touch</h3><p class="collection-desc">Handwritten names, custom monograms and proofs before we print.</p></div></div>
+        </div>
+        <div class="stats-row" style="margin-top:2rem;display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;" data-reveal>
+          <div class="stat-item"><div class="stat-number" data-count="50000">50,000+</div><div class="stat-label">Notes sent</div></div>
+          <div class="stat-item"><div class="stat-number" data-count="100">100%</div><div class="stat-label">Recycled cotton</div></div>
+          <div class="stat-item"><div class="stat-number" data-count="12">12+</div><div class="stat-label">Artisans</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ARTISAN PROCESS -->
+    <section class="craft-spotlight-section" aria-label="Artisan process">
       <div class="container grid grid-2" style="align-items:center;">
-        <div class="craft-text">
-          <div class="section-tag-gold">HANDMADE WITH INTENTION</div>
-          <h2 class="section-title">The Art of Slow Paper &amp; Vintage Letterpress</h2>
-          <p class="section-desc">
-            Each card begins as recycled cotton rag soaked in pure rainwater, hand-pulled onto bamboo screens, and dried under the warm Indian sun. We hand-mix organic mineral inks and press each design using our restored 1950s Heidelberg letterpress machine.
-          </p>
-          <div class="stats-row" style="margin-top:2rem;">
-            <div class="stat-item">
-              <div class="stat-number" data-count="100">100%</div>
-              <div class="stat-label">Cotton Rag Recycled Paper</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number" data-count="50">50,000+</div>
-              <div class="stat-label">Heartfelt Notes Sent</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-number" data-count="12">12+</div>
-              <div class="stat-label">Artisan Printmakers</div>
-            </div>
-          </div>
+        <div class="craft-text" data-reveal>
+          <div class="section-tag-gold">BEHIND THE SCENES</div>
+          <h2 class="section-title">Pulp, Petal, Press</h2>
+          <p class="section-desc">Cotton scraps become pulp, pulp becomes deckle sheets, petals are laid by tweezers, and our 1950s Heidelberg gives each card its deep tactile kiss. Read the full story on <a href="about.html" style="text-decoration:underline;">About Us</a> and the <a href="blog.html" style="text-decoration:underline;">Journal</a>.</p>
+          <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem;"><a href="about.html" class="btn btn-outline">Our craft</a><a href="blog-detail.html" class="btn btn-outline">Pressing guide</a></div>
         </div>
-        <div class="craft-image-frame" style="text-align:center;">
-          <img src="images/wedding-stationery.jpg" alt="Artisan hand-pressing stationery" loading="lazy" style="border-radius:var(--radius-xl);box-shadow:var(--shadow-xl);">
-        </div>
+        <div class="text-center" data-reveal><img src="images/motif-paper.svg" alt="Handmade paper and botanical motif" style="border-radius:var(--radius-xl);box-shadow:var(--shadow-xl);width:100%;" loading="lazy"></div>
       </div>
     </section>
 
+    <!-- 6. ENQUIRY CTA -->
+    <section aria-label="Custom enquiry call to action">
+      <div class="container">
+        <div class="enquiry-banner" data-reveal>
+          <h2 class="enquiry-banner-title">Have a Date, a Name, an Occasion?</h2>
+          <p class="enquiry-banner-desc">Tell us quantities and dreams — we reply within 24 hours with paper options and a quote.</p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:2;">
+            <a href="contact.html" class="btn btn-primary btn-lg">Start Custom Enquiry</a>
+            <a href="pricing.html" class="btn btn-outline-white btn-lg">View Pricing</a>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer" role="contentinfo">
     <div class="container footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="footer-logo">Ink &amp; Imagination</a>
-        <p class="footer-tagline">Boutique Handmade Greeting Cards &amp; Botanical Stationery Studio.</p>
-        <div class="footer-socials">
-          <a class="footer-social-btn" href="#" aria-label="Instagram">📷</a>
-          <a class="footer-social-btn" href="#" aria-label="Pinterest">📌</a>
-          <a class="footer-social-btn" href="#" aria-label="WhatsApp">💬</a>
-        </div>
-      </div>
-      <div>
-        <h4 class="footer-heading">Studio Shop</h4>
-        <ul class="footer-links">
-          <li><a href="products.html" class="footer-link">All Greeting Cards</a></li>
-          <li><a href="custom.html" class="footer-link">Custom Stationery</a></li>
-          <li><a href="wholesale.html" class="footer-link">Wholesale for Retailers</a></li>
-          <li><a href="pricing.html" class="footer-link">Pricing &amp; Packages</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="footer-heading">Portals &amp; Info</h4>
-        <ul class="footer-links">
-          <li><a href="admin-dashboard.html" class="footer-link" style="color:var(--marigold);font-weight:700;">Studio Dashboard</a></li>
-          <li><a href="blog.html" class="footer-link">Studio Journal</a></li>
-          <li><a href="contact.html" class="footer-link">Contact Us</a></li>
-          <li><a href="coming-soon.html" class="footer-link">Coming Soon</a></li>
-          <li><a href="404.html" class="footer-link">404 Error</a></li>
-        </ul>
-      </div>
+      <div class="footer-brand"><a href="index.html" class="footer-logo">Ink &amp; Imagination</a><p class="footer-tagline">Boutique Handmade Greeting Cards &amp; Botanical Stationery Studio.</p></div>
+      <div><h4 class="footer-heading">Explore</h4><ul class="footer-links"><li><a href="index.html" class="footer-link">Home 1</a></li><li><a href="home-niche.html" class="footer-link">Home 2</a></li><li><a href="about.html" class="footer-link">About Us</a></li><li><a href="services.html" class="footer-link">Services</a></li><li><a href="service-detail.html" class="footer-link">Service Details</a></li><li><a href="blog.html" class="footer-link">Blog</a></li></ul></div>
+      <div><h4 class="footer-heading">Studio</h4><ul class="footer-links"><li><a href="blog-detail.html" class="footer-link">Blog Details</a></li><li><a href="contact.html" class="footer-link">Contact Us</a></li><li><a href="pricing.html" class="footer-link">Pricing</a></li><li><a href="login.html" class="footer-link">Login / Register</a></li><li><a href="404.html" class="footer-link">404</a></li><li><a href="coming-soon.html" class="footer-link">Coming Soon</a></li></ul></div>
     </div>
-    <div class="container footer-bottom">
-      <p>&copy; 2026 Ink &amp; Imagination Studio. Crafted with love in Jaipur &amp; Delhi.</p>
-    </div>
+    <div class="container footer-bottom"><p>© 2026 Ink &amp; Imagination Studio. Crafted with love in Jaipur &amp; Delhi.</p></div>
   </footer>
-
   <script src="js/main.js"></script>
 </body>
 </html>

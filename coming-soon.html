@@ -3,66 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Collection Launching Soon — Ink & Imagination</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>Coming Soon — New Collection | Ink &amp; Imagination</title>
+  <meta name="description" content="New botanical collection pressing now. Countdown, progress and VIP notify for our stationery studio.">
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/components.css">
 </head>
-<body style="background:var(--ivory);min-height:100vh;display:flex;flex-direction:column;justify-content:between;text-align:center;">
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="announcement-bar">✦ Studio maintenance, back shortly <button class="announcement-close" aria-label="Dismiss">×</button></div>
+  <nav class="navbar" aria-label="Main navigation"><div class="container nav-inner">
+    <a href="index.html" class="nav-logo"><span class="nav-logo-name">Ink &amp; Imagination</span><span class="nav-logo-tagline">2026 Seasonal Drop</span></a>
+    <ul class="nav-links"><li><a href="index.html" class="nav-link">Home</a></li><li><a href="home-niche.html" class="nav-link">Niche</a></li><li><a href="about.html" class="nav-link">About</a></li><li><a href="services.html" class="nav-link">Services</a></li><li><a href="blog.html" class="nav-link">Blog</a></li><li><a href="pricing.html" class="nav-link">Pricing</a></li><li><a href="contact.html" class="nav-link">Contact</a></li></ul>
+    <div class="nav-controls"><button class="nav-btn" id="theme-toggle" aria-label="Toggle dark mode">🌙</button><button class="nav-btn" id="dir-toggle" aria-label="Toggle RTL">RTL</button><a href="contact.html" class="nav-cta">Enquire Now</a><button class="hamburger" id="hamburger-btn" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
+  </div></nav>
+  <div class="mobile-menu" id="mobile-menu"><a href="index.html" class="nav-link">Home 1 — General Services</a><a href="home-niche.html" class="nav-link">Home 2 — Niche Collections</a><a href="about.html" class="nav-link">About Us</a><a href="services.html" class="nav-link">Services</a><a href="service-detail.html" class="nav-link">Service Details</a><a href="blog.html" class="nav-link">Blog</a><a href="blog-detail.html" class="nav-link">Blog Details</a><a href="contact.html" class="nav-link">Contact Us</a><a href="pricing.html" class="nav-link">Pricing</a><a href="login.html" class="nav-link">Login / Register</a><a href="404.html" class="nav-link">404</a><a href="coming-soon.html" class="nav-link">Coming Soon</a><a href="contact.html" class="btn btn-primary" style="margin-top:1rem;justify-content:center;">Enquire Now →</a></div>
 
-  <nav class="navbar">
-    <div class="container nav-inner">
-      <a href="index.html" class="nav-logo">
-        <span class="nav-logo-name">Ink &amp; Imagination</span>
-        <span class="nav-logo-tagline">2027 Seasonal Collection</span>
-      </a>
-      <div class="nav-controls">
-        <button class="nav-btn" id="theme-toggle">🌙</button>
-        <button class="nav-btn" id="dir-toggle">RTL</button>
-      </div>
-    </div>
-  </nav>
+  <main id="main-content">
+    <section class="page-hero text-center" aria-label="Coming soon hero"><div class="container space-y-md" data-reveal>
+      <div class="section-tag-gold">SEASONAL PRESS • 2026</div>
+      <h1 class="hero-heading" style="max-width:800px;margin:0 auto;">New Botanical Collection Pressing Now</h1>
+      <p class="hero-subtext" style="max-width:620px;margin:0 auto;">Marigold-gold Diwali cards + pine-rose Christmas suites. Petals are under weights as you read.</p>
+    </div></section>
 
-  <main class="container" style="max-width:700px;margin:auto;padding:3rem 1rem;">
-    <div class="section-tag-gold">SEASONAL PAPERCRAFT LAUNCH</div>
-    <h1 class="hero-heading" style="margin-top:0.5rem;">New Botanical Collection Launching Soon</h1>
-    <p class="hero-subtext">Our upcoming pressed floral collection and hand-gilded wedding suites will drop shortly.</p>
+    <section aria-label="Maintenance message"><div class="container text-center" style="max-width:640px;" data-reveal>
+      <h2 class="section-title">A Quick Studio Pause</h2>
+      <p class="section-desc">We are re-shelving, re-inking and photographing 40 new designs. The shop stays open via <a href="contact.html" style="text-decoration:underline;">enquiries</a> — nothing urgent waits.</p>
+      <img src="images/motif-botanical.svg" alt="Upcoming botanical collection motif" style="border-radius:var(--radius-xl);max-width:420px;width:100%;margin:1.2rem auto 0;" loading="lazy">
+    </div></section>
 
-    <!-- Live JS Countdown Timer -->
-    <div id="countdown-timer" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2.5rem 0;">
-      <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
-        <div id="cd-days" style="font-size:2.5rem;font-family:var(--font-display);font-weight:700;color:var(--terracotta);">45</div>
-        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Days</div>
+    <section aria-label="Progress and countdown"><div class="container text-center" style="max-width:640px;" data-reveal>
+      <div class="section-tag-gold">STATUS • 72% PRESSED</div>
+      <div class="progress" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" aria-label="Collection progress"><i style="width:72%;"></i></div>
+      <div id="countdown-timer" class="count-grid">
+        <div class="count-box"><strong id="cd-days">45</strong><small>Days</small></div>
+        <div class="count-box"><strong id="cd-hours">18</strong><small>Hours</small></div>
+        <div class="count-box"><strong id="cd-mins">24</strong><small>Mins</small></div>
+        <div class="count-box"><strong id="cd-secs">09</strong><small>Secs</small></div>
       </div>
-      <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
-        <div id="cd-hours" style="font-size:2.5rem;font-family:var(--font-display);font-weight:700;color:var(--marigold);">18</div>
-        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Hours</div>
-      </div>
-      <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
-        <div id="cd-mins" style="font-size:2.5rem;font-family:var(--font-display);font-weight:700;color:var(--ink-plum);">24</div>
-        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Mins</div>
-      </div>
-      <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
-        <div id="cd-secs" style="font-size:2.5rem;font-family:var(--font-display);font-weight:700;color:var(--sage-dark);">09</div>
-        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Secs</div>
-      </div>
-    </div>
+    </div></section>
 
-    <!-- Subscriber Form -->
-    <form data-ajax="true" style="display:flex;gap:0.5rem;max-width:450px;margin:0 auto;">
-      <input type="email" required placeholder="Enter email for VIP launch invite..." class="form-input">
-      <button type="submit" class="btn btn-primary" style="flex-shrink:0;">Notify Me</button>
-    </form>
+    <section aria-label="Upcoming collection"><div class="container">
+      <div class="section-header text-center" data-reveal><div class="section-tag-gold">SNEAK PEEK</div><h2 class="section-title">What’s Coming</h2></div>
+      <div class="grid grid-3">
+        <div class="collection-card" data-reveal><div class="collection-content"><h3 class="collection-title">Diya Gold Cards</h3><p class="collection-desc">24k foil + pressed marigold.</p></div></div>
+        <div class="collection-card" data-reveal><div class="collection-content"><h3 class="collection-title">Pine-Rose Suites</h3><p class="collection-desc">Fern + dusty-rose seals.</p></div></div>
+        <div class="collection-card" data-reveal><div class="collection-content"><h3 class="collection-title">Gift Tag Advent</h3><p class="collection-desc">24 hand-torn tags, numbered.</p></div></div>
+      </div>
+      <form id="notify-form" data-validate style="display:flex;gap:.5rem;max-width:460px;margin:1.5rem auto 0;flex-wrap:wrap;justify-content:center;" data-reveal>
+        <div class="field" style="flex:1;min-width:220px;"><label class="sr-only" for="nt-email" style="position:absolute;left:-9999px;">Email</label><input id="nt-email" name="email" type="email" required placeholder="Email for VIP invite"><span class="err"></span></div>
+        <button type="submit" class="btn btn-primary">Notify Me</button>
+      </form>
+    </div></section>
+
+    <section aria-label="Contact call to action"><div class="container"><div class="enquiry-banner" data-reveal>
+      <h2 class="enquiry-banner-title">Can’t Wait? Commission Now</h2><p class="enquiry-banner-desc">Bespoke slots stay open during the drop.</p>
+      <div style="position:relative;z-index:2;"><a href="contact.html" class="btn btn-primary btn-lg">Contact the Studio</a></div>
+    </div></div></section>
+
+    <section aria-label="Return home"><div class="container text-center" data-reveal>
+      <h2 class="section-title">Meanwhile, Browse the Shelves</h2>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;"><a href="index.html" class="btn btn-primary btn-lg">Return Home →</a><a href="pricing.html" class="btn btn-outline btn-lg">Current Pricing</a></div>
+    </div></section>
   </main>
 
-  <footer class="footer">
-    <div class="container text-center">
-      <p>&copy; 2026 Ink &amp; Imagination Studio.</p>
-    </div>
-  </footer>
-
+  <footer class="footer"><div class="container footer-grid"><div class="footer-brand"><a href="index.html" class="footer-logo">Ink &amp; Imagination</a><p class="footer-tagline">Boutique Handmade Greeting Cards &amp; Botanical Stationery Studio.</p></div><div><h4 class="footer-heading">Explore</h4><ul class="footer-links"><li><a href="index.html" class="footer-link">Home 1</a></li><li><a href="home-niche.html" class="footer-link">Home 2</a></li><li><a href="about.html" class="footer-link">About Us</a></li><li><a href="services.html" class="footer-link">Services</a></li><li><a href="service-detail.html" class="footer-link">Service Details</a></li><li><a href="blog.html" class="footer-link">Blog</a></li></ul></div><div><h4 class="footer-heading">Studio</h4><ul class="footer-links"><li><a href="blog-detail.html" class="footer-link">Blog Details</a></li><li><a href="contact.html" class="footer-link">Contact Us</a></li><li><a href="pricing.html" class="footer-link">Pricing</a></li><li><a href="login.html" class="footer-link">Login / Register</a></li><li><a href="404.html" class="footer-link">404</a></li><li><a href="coming-soon.html" class="footer-link">Coming Soon</a></li></ul></div></div><div class="container footer-bottom"><p>© 2026 Ink &amp; Imagination Studio. Crafted with love in Jaipur &amp; Delhi.</p></div></footer>
   <script src="js/main.js"></script>
 </body>
 </html>

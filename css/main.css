@@ -8,19 +8,25 @@
 
 /* ── CSS Custom Properties ── */
 :root {
-  /* Color Palette */
-  --ink-plum:       #332633;
-  --terracotta:     #B96F68;
-  --marigold:       #D4A64A;
-  --sage:           #9BA58A;
-  --ivory:          #FBF7EE;
+  /* Ink & Imagination Premium Palette (required) */
+  --cocoa:          #342522;
+  --rose:           #C7837D;
+  --sage:           #899783;
+  --paper:          #F8F2E8;
+  --gold:           #C3A15D;
+  --ink:            #24201F;
+  /* Legacy aliases (kept for compatibility with existing components) */
+  --ink-plum:       #342522;
+  --terracotta:     #C7837D;
+  --marigold:       #C3A15D;
+  --ivory:          #F8F2E8;
   --blush:          #E8C9C2;
   --plum-light:     #4a3a4b;
   --plum-dark:      #231723;
-  --sage-light:     #C5CDBA;
+  --sage-light:     #B7C0AC;
   --sage-dark:      #6E7862;
-  --marigold-light: #E8C47A;
-  --terracotta-light:#CFA09A;
+  --marigold-light: #D8BC7F;
+  --terracotta-light:#D5A5A0;
   --blush-dark:     #D4A89E;
   --white:          #FFFFFF;
   --black:          #0A0A0A;
@@ -67,16 +73,16 @@
   --max-w-wide:   1440px;
 
   /* Semantic (Light mode defaults) */
-  --bg-primary:   var(--ivory);
-  --bg-secondary: #F5F0E6;
+  --bg-primary:   var(--paper);
+  --bg-secondary: #F1E9D9;
   --bg-card:      var(--white);
-  --bg-dark:      var(--ink-plum);
-  --text-primary: var(--ink-plum);
+  --bg-dark:      var(--cocoa);
+  --text-primary: var(--cocoa);
   --text-secondary:#5C4E5C;
   --text-muted:   #8A7A8A;
-  --text-on-dark: var(--ivory);
-  --border:       rgba(51,38,51,.12);
-  --border-accent:rgba(212,166,74,.4);
+  --text-on-dark: var(--paper);
+  --border:       rgba(52,37,34,.12);
+  --border-accent:rgba(195,161,93,.45);
 }
 
 /* ── Dark Mode ── */
