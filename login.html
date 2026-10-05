@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal Sign In — Ink & Imagination</title>
+  <meta name="description" content="Sign in to your Ink & Imagination Client Portal to approve custom wedding invitation proofs, track orders, and view invoices.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body style="background:var(--bg-secondary);min-height:100vh;display:flex;flex-direction:column;justify-content:between;">
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">Ink &amp; Imagination</span>
+        <span class="nav-logo-tagline">Client Portal</span>
+      </a>
+      <div class="nav-controls">
+        <button class="nav-btn" id="theme-toggle">🌙</button>
+        <button class="nav-btn" id="dir-toggle">RTL</button>
+        <a href="index.html" class="nav-link">Return to Shop</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" style="max-width:480px;margin:4rem auto;padding:0 1rem;">
+    <div style="background:var(--bg-card);padding:2.5rem;border-radius:var(--radius-xl);border:1px solid var(--border);box-shadow:var(--shadow-xl);" class="space-y-md">
+      
+      <div class="text-center">
+        <div class="section-tag-gold">CLIENT PORTAL ACCESS</div>
+        <h2 class="section-title" style="font-size:1.8rem;">Sign In to Your Account</h2>
+        <p class="section-subtitle">Track custom proofs &amp; wholesale orders.</p>
+      </div>
+
+      <form data-ajax="true" class="space-y-sm" style="margin-top:1.5rem;">
+        <div>
+          <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.3rem;">EMAIL ADDRESS</label>
+          <input type="email" required placeholder="client@example.com" class="form-input">
+        </div>
+        <div>
+          <label style="font-size:0.75rem;font-weight:700;color:var(--text-muted);display:block;margin-bottom:0.3rem;">PASSWORD</label>
+          <input type="password" required placeholder="••••••••••••" class="form-input">
+        </div>
+        <button type="submit" class="btn btn-primary full-width" style="justify-content:center;margin-top:1rem;">Sign In to Portal →</button>
+      </form>
+
+      <div style="text-align:center;margin-top:1.5rem;font-size:0.85rem;">
+        <a href="admin-dashboard.html" style="color:var(--terracotta);font-weight:700;">⚡ View Studio Dashboard Demo</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" style="margin-top:auto;">
+    <div class="container text-center">
+      <p>&copy; 2026 Ink &amp; Imagination Studio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

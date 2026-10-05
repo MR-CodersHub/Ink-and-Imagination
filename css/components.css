@@ -1,0 +1,434 @@
+/* ============================================================
+   INK & IMAGINATION — SHARED COMPONENTS CSS
+   ============================================================ */
+
+/* ── Botanical Decorative SVG Patterns ── */
+.botanical-corner-tl {
+  position: absolute;
+  top: 0; left: 0;
+  width: 200px; height: 200px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none'%3E%3Cpath d='M10 190 Q30 120 80 80 Q120 50 180 20' stroke='%239BA58A' stroke-width='1' opacity='0.4' stroke-dasharray='4 6'/%3E%3Cpath d='M10 150 Q50 100 100 80' stroke='%23B96F68' stroke-width='0.8' opacity='0.3'/%3E%3Ccircle cx='40' cy='130' r='3' fill='%23D4A64A' opacity='0.5'/%3E%3Ccircle cx='80' cy='95' r='2' fill='%239BA58A' opacity='0.4'/%3E%3Ccircle cx='130' cy='55' r='2.5' fill='%23B96F68' opacity='0.3'/%3E%3Cellipse cx='60' cy='110' rx='8' ry='5' fill='%239BA58A' opacity='0.2' transform='rotate(-30 60 110)'/%3E%3Cellipse cx='110' cy='70' rx='6' ry='4' fill='%23B96F68' opacity='0.15' transform='rotate(-20 110 70)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.6;
+}
+.botanical-corner-br {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 200px; height: 200px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none'%3E%3Cpath d='M190 10 Q170 80 120 120 Q80 150 20 180' stroke='%239BA58A' stroke-width='1' opacity='0.4' stroke-dasharray='4 6'/%3E%3Ccircle cx='160' cy='70' r='3' fill='%23D4A64A' opacity='0.5'/%3E%3Ccircle cx='120' cy='105' r='2' fill='%239BA58A' opacity='0.4'/%3E%3Cellipse cx='140' cy='90' rx='8' ry='5' fill='%239BA58A' opacity='0.2' transform='rotate(30 140 90)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ── Handwritten Style Divider ── */
+.hr-botanical {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin: var(--space-2xl) 0;
+}
+.hr-botanical::before, .hr-botanical::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+.hr-botanical-icon {
+  font-size: 1rem;
+  color: var(--sage);
+  opacity: 0.7;
+}
+
+/* ── Tag Pill ── */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  background: rgba(155,165,138,.15);
+  color: var(--sage-dark);
+  border: 1px solid rgba(155,165,138,.25);
+}
+.tag-pill.marigold {
+  background: rgba(212,166,74,.12);
+  color: #9B7320;
+  border-color: rgba(212,166,74,.25);
+}
+[data-theme="dark"] .tag-pill.marigold { color: var(--marigold); }
+.tag-pill.terracotta {
+  background: rgba(185,111,104,.12);
+  color: var(--terracotta);
+  border-color: rgba(185,111,104,.25);
+}
+.tag-pill.plum {
+  background: rgba(51,38,51,.08);
+  color: var(--ink-plum);
+  border-color: rgba(51,38,51,.15);
+}
+[data-theme="dark"] .tag-pill.plum {
+  background: rgba(255,255,255,.06);
+  color: rgba(251,247,238,.7);
+  border-color: rgba(255,255,255,.12);
+}
+
+/* ── Avatar Group ── */
+.avatar-group {
+  display: flex;
+  align-items: center;
+}
+.avatar-group-img {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-primary);
+  margin-left: -10px;
+  object-fit: cover;
+}
+.avatar-group-img:first-child { margin-left: 0; }
+.avatar-group-count {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--blush);
+  border: 2px solid var(--bg-primary);
+  margin-left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ink-plum);
+}
+
+/* ── Progress / Timeline ── */
+.timeline {
+  position: relative;
+  padding-left: var(--space-2xl);
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--terracotta), var(--marigold), var(--sage));
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: var(--space-2xl);
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: calc(-1 * var(--space-2xl) + 4px);
+  top: 6px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--marigold);
+  transition: background-color var(--t-fast) ease;
+}
+.timeline-item:hover .timeline-dot { background: var(--marigold); }
+.timeline-week {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--marigold);
+  margin-bottom: var(--space-xs);
+}
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin-bottom: var(--space-xs);
+}
+.timeline-desc { font-size: 0.88rem; color: var(--text-muted); }
+
+/* ── Showcase Grid (Bespoke Gallery) ── */
+.showcase-masonry {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 200px;
+  gap: var(--space-md);
+}
+.showcase-item {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+}
+.showcase-item.tall { grid-row: span 2; }
+.showcase-item.wide { grid-column: span 2; }
+.showcase-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--t-slow) var(--ease-out);
+}
+.showcase-item:hover img { transform: scale(1.06); }
+.showcase-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(51,38,51,.55);
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-lg);
+  opacity: 0;
+  transition: opacity var(--t-mid) ease;
+}
+.showcase-item:hover .showcase-hover { opacity: 1; }
+.showcase-hover-text {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ivory);
+  font-style: italic;
+}
+
+/* ── Retailer Logo Strip ── */
+.logo-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xl);
+  flex-wrap: wrap;
+}
+.retailer-logo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  opacity: 0.5;
+  transition: opacity var(--t-mid) ease;
+}
+.retailer-logo-placeholder:hover { opacity: 0.85; }
+.retailer-logo-box {
+  width: 100px; height: 40px;
+  background: var(--border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* ── Enquiry CTA Banner ── */
+.enquiry-banner {
+  background: linear-gradient(135deg, #4A2D48 0%, var(--ink-plum) 50%, #3D2840 100%);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3xl);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.enquiry-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(212,166,74,.15) 0%, transparent 60%),
+              radial-gradient(circle at 75% 25%, rgba(185,111,104,.15) 0%, transparent 50%);
+}
+.enquiry-banner > * { position: relative; z-index: 2; }
+.enquiry-banner-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--ivory);
+  margin-bottom: var(--space-md);
+}
+.enquiry-banner-desc {
+  color: rgba(251,247,238,.65);
+  max-width: 480px;
+  margin-inline: auto;
+  margin-bottom: var(--space-2xl);
+}
+
+/* ── Value Prop Row ── */
+.value-props {
+  display: flex;
+  gap: var(--space-2xl);
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: var(--space-xl) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.value-prop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+.value-prop-icon { font-size: 1.2rem; }
+.value-prop-text { font-weight: 600; }
+
+/* ── Floating Label Form ── */
+.floating-group {
+  position: relative;
+}
+.floating-group input,
+.floating-group textarea {
+  width: 100%;
+  padding: 1.5rem 1rem 0.5rem;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: border-color var(--t-fast) ease;
+}
+.floating-group label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: all var(--t-fast) ease;
+}
+.floating-group input:focus ~ label,
+.floating-group input:not(:placeholder-shown) ~ label,
+.floating-group textarea:focus ~ label,
+.floating-group textarea:not(:placeholder-shown) ~ label {
+  top: 0.4rem;
+  font-size: 0.68rem;
+  color: var(--marigold);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.floating-group input:focus,
+.floating-group textarea:focus {
+  outline: none;
+  border-color: var(--marigold);
+  box-shadow: 0 0 0 3px rgba(212,166,74,.12);
+}
+
+/* ── Checkbox / Radio ── */
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  cursor: pointer;
+}
+.check-box {
+  width: 20px; height: 20px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--t-fast) ease;
+}
+.check-box.checked {
+  background: var(--marigold);
+  border-color: var(--marigold);
+  color: var(--ink-plum);
+  font-size: 0.7rem;
+}
+.check-label { font-size: 0.88rem; color: var(--text-secondary); }
+
+/* ── Colour Palette Swatch Bar ── */
+.color-swatch-bar {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+.color-swatch {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-card);
+  box-shadow: 0 0 0 1px var(--border);
+  cursor: pointer;
+  transition: transform var(--t-fast) ease;
+}
+.color-swatch:hover { transform: scale(1.25); }
+
+/* ── Number Counter Animate ── */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.count-animated { animation: countUp 0.5s var(--ease-out) both; }
+
+/* ── Skeleton Loader ── */
+.skeleton {
+  background: linear-gradient(90deg, var(--border) 25%, rgba(255,255,255,.05) 50%, var(--border) 75%);
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: var(--radius-md);
+}
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Notification Badge ── */
+.notification-badge {
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  border: 2px solid var(--bg-primary);
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Blockquote ── */
+.editorial-quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 800px;
+  margin-inline: auto;
+  padding: var(--space-2xl);
+  position: relative;
+}
+.editorial-quote::before {
+  content: '\201C';
+  position: absolute;
+  top: 0; left: var(--space-xl);
+  font-size: 6rem;
+  line-height: 0.7;
+  color: rgba(185,111,104,.2);
+  font-family: var(--font-display);
+}
+.editorial-quote-source {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--marigold);
+  margin-top: var(--space-lg);
+  display: block;
+}
+
+/* ── Dark Mode Announcement Bar ── */
+.announcement-bar {
+  background: var(--ink-plum);
+  padding: 0.5rem 0;
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(251,247,238,.7);
+  letter-spacing: 0.05em;
+  position: relative;
+  z-index: 1001;
+}
+.announcement-bar a { color: var(--marigold); font-weight: 600; }
+.announcement-bar a:hover { text-decoration: underline; }

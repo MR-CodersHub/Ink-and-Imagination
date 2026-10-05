@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio Operations Dashboard — Ink & Imagination</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body style="background:var(--bg-secondary);">
+
+  <!-- Studio Admin Header -->
+  <nav class="navbar" role="navigation">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">Ink &amp; Imagination</span>
+        <span class="nav-logo-tagline">Studio Control &amp; Proof Manager</span>
+      </a>
+      <div class="nav-controls">
+        <button class="nav-btn" id="theme-toggle">🌙</button>
+        <button class="nav-btn" id="dir-toggle">RTL</button>
+        <a href="index.html" class="nav-cta">Back to Shop</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" style="padding:3rem 1rem;">
+    <div class="space-y-md">
+      <div class="section-tag-gold">STUDIO TELEMETRY &amp; PROOF MANAGEMENT</div>
+      <h1 class="section-title">Artisan Paper &amp; Order Dashboard</h1>
+
+      <!-- KPI Metrics -->
+      <div class="grid grid-4" style="gap:1.5rem;margin:2rem 0;">
+        <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <div style="font-size:0.8rem;color:var(--text-muted);font-weight:700;">MONTHLY REVENUE</div>
+          <div style="font-size:2rem;font-family:var(--font-display);font-weight:700;color:var(--ink-plum);">₹3,48,500</div>
+          <div style="font-size:0.75rem;color:var(--sage-dark);font-weight:700;margin-top:0.3rem;">+18% vs last month</div>
+        </div>
+
+        <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <div style="font-size:0.8rem;color:var(--text-muted);font-weight:700;">ACTIVE PROOFS PENDING</div>
+          <div style="font-size:2rem;font-family:var(--font-display);font-weight:700;color:var(--terracotta);">14 Orders</div>
+          <div style="font-size:0.75rem;color:var(--terracotta);font-weight:700;margin-top:0.3rem;">4 Wedding Suites</div>
+        </div>
+
+        <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <div style="font-size:0.8rem;color:var(--text-muted);font-weight:700;">COTTON PAPER STOCK</div>
+          <div style="font-size:2rem;font-family:var(--font-display);font-weight:700;color:var(--marigold);">4,200 Sheets</div>
+          <div style="font-size:0.75rem;color:var(--sage-dark);font-weight:700;margin-top:0.3rem;">Solar Drying Ready</div>
+        </div>
+
+        <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
+          <div style="font-size:0.8rem;color:var(--text-muted);font-weight:700;">LETTERPRESS SCHEDULE</div>
+          <div style="font-size:2rem;font-family:var(--font-display);font-weight:700;color:var(--ink-plum);">99.4% On-Time</div>
+          <div style="font-size:0.75rem;color:var(--sage-dark);font-weight:700;margin-top:0.3rem;">Heidelberg Press #1</div>
+        </div>
+      </div>
+
+      <!-- Recent Orders Table -->
+      <div style="background:var(--bg-card);padding:2rem;border-radius:var(--radius-xl);border:1px solid var(--border);margin-top:2rem;">
+        <h3 style="font-family:var(--font-display);font-size:1.6rem;color:var(--ink-plum);margin-bottom:1.5rem;">Recent Studio Orders &amp; Proof Approvals</h3>
+        <table style="width:100%;text-align:left;font-size:0.9rem;border-collapse:collapse;">
+          <thead>
+            <tr style="border-bottom:2px solid var(--border);color:var(--text-muted);font-size:0.8rem;text-transform:uppercase;">
+              <th style="padding-bottom:1rem;">Order ID</th>
+              <th style="padding-bottom:1rem;">Client Name</th>
+              <th style="padding-bottom:1rem;">Item / Suite</th>
+              <th style="padding-bottom:1rem;">Status</th>
+              <th style="padding-bottom:1rem;">Dispatch Date</th>
+            </tr>
+          </thead>
+          <tbody style="line-height:2.5;">
+            <tr style="border-bottom:1px solid var(--border);">
+              <td>#INK-8492</td>
+              <td>Priya &amp; Rohan</td>
+              <td>Bespoke Gold Foil Wedding Suite (150 sets)</td>
+              <td><span style="background:var(--blush);color:var(--ink-plum);padding:0.2rem 0.6rem;border-radius:999px;font-size:0.75rem;font-weight:700;">Proof Approved</span></td>
+              <td>Oct 08, 2026</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td>#INK-8491</td>
+              <td>Boutique Paper Co.</td>
+              <td>Wholesale Pressed Flower Notelet Boxes (50 units)</td>
+              <td><span style="background:var(--sage-light);color:var(--sage-dark);padding:0.2rem 0.6rem;border-radius:999px;font-size:0.75rem;font-weight:700;">In Printing</span></td>
+              <td>Oct 10, 2026</td>
+            </tr>
+            <tr>
+              <td>#INK-8490</td>
+              <td>Kavita Sharma</td>
+              <td>Botanical Birthday Series (Box of 8)</td>
+              <td><span style="background:var(--marigold-light);color:var(--ink-plum);padding:0.2rem 0.6rem;border-radius:999px;font-size:0.75rem;font-weight:700;">Dispatched</span></td>
+              <td>Oct 05, 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

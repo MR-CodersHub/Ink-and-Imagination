@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Collection Launching Soon — Ink & Imagination</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body style="background:var(--ivory);min-height:100vh;display:flex;flex-direction:column;justify-content:between;text-align:center;">
+
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-name">Ink &amp; Imagination</span>
+        <span class="nav-logo-tagline">2027 Seasonal Collection</span>
+      </a>
+      <div class="nav-controls">
+        <button class="nav-btn" id="theme-toggle">🌙</button>
+        <button class="nav-btn" id="dir-toggle">RTL</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container" style="max-width:700px;margin:auto;padding:3rem 1rem;">
+    <div class="section-tag-gold">SEASONAL PAPERCRAFT LAUNCH</div>
+    <h1 class="hero-heading" style="margin-top:0.5rem;">New Botanical Collection Launching Soon</h1>
+    <p class="hero-subtext">Our upcoming pressed floral collection and hand-gilded wedding suites will drop shortly.</p>
+
+    <!-- Live JS Countdown Timer -->
+    <div id="countdown-timer" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:2.5rem 0;">
+      <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
+        <div id="cd-days" style="font-size:2.5rem;font-family:var(--font-display);font-weight:700;color:var(--terracotta);">45</div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Days</div>
+      </div>
+      <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
+        <div id="cd-hours" style="font-size:2.5rem;font-family:var(--font-display);font-weight:700;color:var(--marigold);">18</div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Hours</div>
+      </div>
+      <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
+        <div id="cd-mins" style="font-size:2.5rem;font-family:var(--font-display);font-weight:700;color:var(--ink-plum);">24</div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Mins</div>
+      </div>
+      <div style="background:var(--bg-card);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
+        <div id="cd-secs" style="font-size:2.5rem;font-family:var(--font-display);font-weight:700;color:var(--sage-dark);">09</div>
+        <div style="font-size:0.75rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Secs</div>
+      </div>
+    </div>
+
+    <!-- Subscriber Form -->
+    <form data-ajax="true" style="display:flex;gap:0.5rem;max-width:450px;margin:0 auto;">
+      <input type="email" required placeholder="Enter email for VIP launch invite..." class="form-input">
+      <button type="submit" class="btn btn-primary" style="flex-shrink:0;">Notify Me</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="container text-center">
+      <p>&copy; 2026 Ink &amp; Imagination Studio.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
