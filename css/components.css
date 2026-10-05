@@ -467,3 +467,10 @@
 .faq-item.open .faq-answer { max-height: 420px; }
 .skip-link { position: absolute; left: -9999px; top: 0; background: var(--marigold); color: var(--ink-plum); padding: .6rem 1rem; z-index: 9999; font-weight: 800; }
 .skip-link:focus { left: .5rem; top: .5rem; }
+
+/* ── Inline SVG icons (emoji replacements) ── */
+.icon { width: 1.1em; height: 1.1em; vertical-align: -0.15em; flex-shrink: 0; }
+.nav-btn .icon { width: 1.15em; height: 1.15em; vertical-align: middle; }
+.hero-feature-item .icon, .collection-title .icon { margin-right: .35em; }
+.stars { display: inline-flex; gap: .15rem; color: var(--marigold); }
+.stars .icon { width: 1em; height: 1em; }
