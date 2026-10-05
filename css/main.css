@@ -1799,7 +1799,7 @@ section { padding-block: var(--space-3xl); position: relative; }
 [data-theme="dark"] .footer { background: var(--plum-dark); }
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1.3fr;
+  grid-template-columns: 1.4fr .85fr .85fr 1.1fr 1.2fr;
   gap: var(--space-2xl);
   padding-bottom: var(--space-3xl);
   border-bottom: 1px solid rgba(251,247,238,.1);
