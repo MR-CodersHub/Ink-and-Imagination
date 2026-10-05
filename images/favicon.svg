@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ink and Imagination favicon">
+  <rect width="64" height="64" rx="14" fill="#342522"/>
+  <path d="M32 10 C39 20 42 28 42 36 L32 56 L22 36 C22 28 25 20 32 10Z" fill="#C3A15D"/>
+  <circle cx="32" cy="30" r="2.4" fill="#342522"/>
+  <path d="M32 33.5 V48" stroke="#342522" stroke-width="2" stroke-linecap="round"/>
+</svg>
