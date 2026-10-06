@@ -390,6 +390,103 @@
     });
   }
 
+  /* ---------- Blog category filter + view more ---------- */
+  function initPostFilter() {
+    var bar = document.querySelector('.post-filter');
+    var grid = document.querySelector('.post-grid');
+    if (!bar || !grid) return;
+    var DEFAULT_SHOWN = 6;
+    var STEP = 3;
+    var btns = Array.prototype.slice.call(bar.querySelectorAll('[data-filter]'));
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.post-card'));
+    var count = document.querySelector('[data-post-count]');
+    var moreBtn = document.getElementById('post-view-more');
+    var moreWrap = moreBtn ? moreBtn.closest('.post-more') : null;
+    var filter = 'all';
+    var shown = DEFAULT_SHOWN;
+    function apply() {
+      var matched = cards.filter(function (c) { return filter === 'all' || c.getAttribute('data-category') === filter; });
+      var visible = matched.slice(0, shown);
+      cards.forEach(function (c) { c.classList.toggle('is-hidden', visible.indexOf(c) === -1); });
+      if (count) count.textContent = 'Showing ' + visible.length + ' of ' + matched.length + ' stories';
+      btns.forEach(function (b) {
+        var on = b.getAttribute('data-filter') === filter;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      if (moreBtn) {
+        if (matched.length > shown) {
+          moreWrap.style.display = '';
+          moreBtn.innerHTML = 'View more (' + (matched.length - shown) + ' more) <span aria-hidden="true">→</span>';
+          moreBtn.dataset.mode = 'more';
+        } else if (matched.length > DEFAULT_SHOWN) {
+          moreWrap.style.display = '';
+          moreBtn.innerHTML = 'Show less <span aria-hidden="true">↑</span>';
+          moreBtn.dataset.mode = 'less';
+        } else {
+          moreWrap.style.display = 'none';
+        }
+      }
+    }
+    btns.forEach(function (b) { b.addEventListener('click', function () { filter = b.getAttribute('data-filter'); shown = DEFAULT_SHOWN; apply(); }); });
+    if (moreBtn) moreBtn.addEventListener('click', function () {
+      if (moreBtn.dataset.mode === 'less') { shown = DEFAULT_SHOWN; } else { shown += STEP; }
+      apply();
+    });
+    apply();
+  }
+
+  /* ---------- Blog post detail (?post=slug) ---------- */
+  var BLOG_POSTS = [
+    { slug: 'invitation-wording', cat: 'guide', badge: 'Guide', title: 'Invitation Wording Etiquette', desc: 'Traditional + modern formats that never offend.', img: '../images/post-wording.jpg', tag: 'GUIDE • WORDING', intro: 'Formal, semi-formal or fully you — the right wording tells guests exactly what to expect.', h2: 'Match Words to Mood', body: 'Spell names fully, name both hosts, state dress and gift expectations once, clearly.', points: ['Write host names in full', 'State dress code once', 'Give one clear RSVP date'] },
+    { slug: 'restoring-press', cat: 'craft', badge: 'Craft', gold: true, title: 'Restoring Our 1950s Press', desc: 'Cast iron, elbow grease, first perfect impression.', img: '../images/post-press.jpg', tag: 'CRAFT • PRESS', intro: 'Cast iron, elbow grease and three weekends — bringing our 1950s Heidelberg back to life.', h2: 'Patience, Then Pressure', body: 'We stripped a century of ink, re-levelled the platen and pulled test sheets until the kiss was even.', points: ['Strip old ink fully', 'Level the platen', 'Proof until even'] },
+    { slug: 'what-to-write', cat: 'tips', badge: 'Tips', title: 'What to Write Inside?', desc: '30 heartfelt lines for every occasion.', img: '../images/post-write.jpg', tag: 'TIPS • WORDING', intro: 'Thirty starting lines, but one rule beats them all — write like you speak.', h2: 'Say It Plain', body: 'Short, specific and warm beats long and flowery; name the memory, not just the occasion.', points: ['Name a shared memory', 'Keep it under 3 lines', 'Sign by hand, always'] },
+    { slug: 'envelope-guide', cat: 'guide', badge: 'Guide', title: 'Envelope Addressing Guide', desc: 'Titles, families and plus-ones, done right.', img: '../images/post-envelope.jpg', tag: 'GUIDE • ETIQUETTE', intro: 'Titles, families and plus-ones — addressing that offends nobody.', h2: 'Order of Names', body: 'Outer envelope formal, inner envelope warm; children and plus-ones named, never assumed.', points: ['Full titles outside', 'Warm names inside', 'Name every plus-one'] },
+    { slug: 'pressing-marigold', cat: 'craft', badge: 'Craft', gold: true, title: 'Pressing Marigold That Lasts', desc: 'Pick, press and seal petals for decades.', img: '../images/post-marigold.jpg', tag: 'CRAFT • PETALS', intro: 'Marigold keeps its gold for decades — if you pick and press it right.', h2: 'Pick Dry, Press Flat', body: 'Mid-morning blooms, blotters changed weekly, three full weeks under weight.', points: ['Pick after dew lifts', 'Change blotters weekly', 'Press 21+ days'] },
+    { slug: 'pen-pairings', cat: 'tips', badge: 'Tips', title: 'Pen Pairings for Cotton Paper', desc: 'Inks that glide and never feather.', img: '../images/post-pens.jpg', tag: 'TIPS • TOOLS', intro: 'Cotton drinks ink — pair the wrong pen and lines feather by morning.', h2: 'Wet Ink, Patient Hand', body: 'Gel and fountain pens with quick-dry ink glide on 300 GSM; ballpoints skip, markers bleed.', points: ['Quick-dry gel or fountain', 'Test on a swatch first', 'Let lines dry flat'] },
+    { slug: 'rsvp-wording', cat: 'guide', badge: 'Guide', title: 'RSVP Wording That Works', desc: 'Deadlines guests actually answer.', img: '../images/post-rsvp.jpg', tag: 'GUIDE • RSVP', intro: 'A deadline guests answer beats a pretty card they ignore.', h2: 'One Date, One Way', body: 'Give a single reply-by date and one reply path; follow once, kindly.', points: ['One reply-by date', 'One reply path', 'One kind nudge'] },
+    { slug: 'gold-foil', cat: 'craft', badge: 'Craft', gold: true, title: 'Gold Foil Without Cracks', desc: 'Heat, pressure and patience, balanced.', img: '../images/post-foil.jpg', tag: 'CRAFT • FOIL', intro: 'Foil cracks when heat, pressure and dwell fight each other.', h2: 'Balance the Three', body: 'Medium heat, firm even pressure, short dwell — then let the sheet rest before handling.', points: ['Medium heat first', 'Even firm pressure', 'Rest sheets after'] },
+    { slug: 'mailing-safely', cat: 'tips', badge: 'Tips', title: 'Mailing Deckle Cards Safely', desc: 'Sleeves, stiffness and postage tips.', img: '../images/post-mailing.jpg', tag: 'TIPS • POST', intro: 'Deckle edges survive the post with sleeves, stiffness and the right stamp.', h2: 'Sleeve It Rigid', body: 'Biodegradable sleeve, rigid mailer, correct postage — and nothing marked for machines.', points: ['Sleeve every card', 'Use rigid mailers', 'Weigh before stamping'] },
+    { slug: 'birthday-timelines', cat: 'occasions', badge: 'Occasions', sage: true, title: 'Birthday Card Timelines', desc: 'When to order, write and post.', img: '../images/post-birthday.jpg', tag: 'OCCASIONS • TIMING', intro: 'Order, write and post on time — birthdays wait for nobody.', h2: 'Count Backwards', body: 'Custom orders need 12–16 days; write a week ahead, post three days early.', points: ['Order 3 weeks ahead', 'Write a week early', 'Post 3 days prior'] },
+    { slug: 'wedding-checklist', cat: 'occasions', badge: 'Occasions', sage: true, title: 'Wedding Suite Checklist', desc: 'Every piece, from save-date to thanks.', img: '../images/post-wedding.jpg', tag: 'OCCASIONS • WEDDING', intro: 'Save-dates to thank-yous — every paper piece in order.', h2: 'In Invitation Order', body: 'Save-date, invite + RSVP, day-of paper, then thank-you notelets — one studio for all four.', points: ['Save-date first', 'Invite + RSVP suite', 'Thanks after the day'] },
+    { slug: 'festive-guide', cat: 'occasions', badge: 'Occasions', sage: true, title: 'Festive Gifting Guide', desc: 'Diwali to Christmas, boxed right.', img: '../images/post-festive.jpg', tag: 'OCCASIONS • FESTIVE', intro: 'Diwali to Christmas — gift boxes that arrive ready to hand over.', h2: 'Box It Beautiful', body: 'Eight pressed notelets, hand-torn tags and twine — boxed sets from ₹1,850.', points: ['Pick an 8-box set', 'Add hand-torn tags', 'Ship before the rush'] }
+  ];
+  function initBlogPost() {
+    var title = document.querySelector('[data-post-title]');
+    if (!title) return;
+    var slug = null;
+    try { slug = new URLSearchParams(window.location.search).get('post'); } catch (e) { slug = null; }
+    var post = null;
+    for (var i = 0; i < BLOG_POSTS.length; i++) { if (BLOG_POSTS[i].slug === slug) { post = BLOG_POSTS[i]; break; } }
+    function set(sel, fn) { var el = document.querySelector(sel); if (el) fn(el); }
+    if (post) {
+      set('[data-post-tag]', function (el) { el.textContent = post.tag; });
+      title.textContent = post.title;
+      set('[data-post-crumb]', function (el) { el.textContent = post.title; });
+      set('[data-post-intro]', function (el) { el.textContent = post.intro; });
+      set('[data-post-h2]', function (el) { el.textContent = post.h2; });
+      set('[data-post-body]', function (el) { el.textContent = post.body; });
+      set('[data-post-img]', function (el) { el.src = post.img; el.setAttribute('data-zoom', post.img); el.alt = post.title; });
+      document.title = post.title + ' — Journal | Ink & Imagination';
+    }
+    set('#post-points', function (ul) {
+      var pts = post ? post.points : ['Pick dry, blemish-free blooms mid-morning.', 'Press 21+ days; change blotters weekly.', 'Store with silica; keep from direct sun.'];
+      ul.innerHTML = pts.map(function (p) { return '<li>✦ ' + p + '</li>'; }).join('');
+    });
+    set('#related-grid', function (grid) {
+      var rel = BLOG_POSTS.filter(function (p) { return !post || (p.slug !== post.slug && p.cat === post.cat); }).slice(0, 3);
+      if (post && rel.length < 3) {
+        var extra = BLOG_POSTS.filter(function (p) { return p.slug !== post.slug && p.cat !== post.cat; });
+        rel = rel.concat(extra).slice(0, 3);
+      }
+      if (!post) rel = BLOG_POSTS.slice(0, 3);
+      grid.innerHTML = rel.map(function (p) {
+        var cls = 'post-badge' + (p.gold ? ' post-badge--gold' : '') + (p.sage ? ' post-badge--sage' : '');
+        return '<article class="post-card"><div class="post-media"><img src="' + p.img + '" alt="' + p.title + '" class="post-img" loading="lazy"><span class="' + cls + '">' + p.badge + '</span></div><div class="post-body"><h3 class="post-title"><a href="blog-detail.html?post=' + p.slug + '">' + p.title + '</a></h3><p class="post-desc">' + p.desc + '</p><div class="post-foot"><a href="blog-detail.html?post=' + p.slug + '" class="post-link">Read <span aria-hidden="true">→</span></a></div></div></article>';
+      }).join('');
+    });
+  }
+
   /* ---------- Init ---------- */
   document.addEventListener('DOMContentLoaded', function () {
     initTheme();
@@ -408,6 +505,8 @@
     initAuthTabs();
     initCountdown();
     initPassword();
+    initPostFilter();
+    initBlogPost();
     document.querySelectorAll('#theme-toggle, #theme-toggle-mobile').forEach(function (b) { b.addEventListener('click', toggleTheme); });
     document.querySelectorAll('#dir-toggle, #dir-toggle-mobile').forEach(function (b) { b.addEventListener('click', toggleDir); });
     document.body.classList.add('page-enter');
