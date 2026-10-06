@@ -738,41 +738,65 @@
   }
 
   /* ---------- Blog post detail (?post=slug) ---------- */
+  var AUTHORS = {
+    'Ananya Sharma': { role: 'Founder & Paper Maker', bio: 'Ananya founded Ink & Imagination in 2019 after falling for deckle-edge cotton at a Jaipur paper mill. She heads design and botanical sourcing across both studios.' },
+    'Rohan Mehta': { role: 'Master Printer', bio: 'Rohan coaxes our 1950s Heidelberg through letterpress and foil runs. Twelve years at the press, zero shortcuts — every sheet gets his loupe test.' },
+    'Meera Iyer': { role: 'Botanical Artist', bio: 'Meera harvests, presses and lays every petal that lands on our cards. She can tell cosmos from cornflower blindfolded.' }
+  };
+  function authorInitials(name) {
+    return String(name || '?').split(' ').map(function (w) { return w.charAt(0); }).join('').slice(0, 2).toUpperCase();
+  }
   var BLOG_POSTS = [
-    { slug: 'invitation-wording', cat: 'guide', badge: 'Guide', title: 'Invitation Wording Etiquette', desc: 'Traditional + modern formats that never offend.', img: '../images/post-wording.jpg', tag: 'GUIDE • WORDING', intro: 'Formal, semi-formal or fully you — the right wording tells guests exactly what to expect.', h2: 'Match Words to Mood', body: 'Spell names fully, name both hosts, state dress and gift expectations once, clearly.', points: ['Write host names in full', 'State dress code once', 'Give one clear RSVP date'] },
-    { slug: 'restoring-press', cat: 'craft', badge: 'Craft', gold: true, title: 'Restoring Our 1950s Press', desc: 'Cast iron, elbow grease, first perfect impression.', img: '../images/post-press.jpg', tag: 'CRAFT • PRESS', intro: 'Cast iron, elbow grease and three weekends — bringing our 1950s Heidelberg back to life.', h2: 'Patience, Then Pressure', body: 'We stripped a century of ink, re-levelled the platen and pulled test sheets until the kiss was even.', points: ['Strip old ink fully', 'Level the platen', 'Proof until even'] },
-    { slug: 'what-to-write', cat: 'tips', badge: 'Tips', title: 'What to Write Inside?', desc: '30 heartfelt lines for every occasion.', img: '../images/post-write.jpg', tag: 'TIPS • WORDING', intro: 'Thirty starting lines, but one rule beats them all — write like you speak.', h2: 'Say It Plain', body: 'Short, specific and warm beats long and flowery; name the memory, not just the occasion.', points: ['Name a shared memory', 'Keep it under 3 lines', 'Sign by hand, always'] },
-    { slug: 'envelope-guide', cat: 'guide', badge: 'Guide', title: 'Envelope Addressing Guide', desc: 'Titles, families and plus-ones, done right.', img: '../images/post-envelope.jpg', tag: 'GUIDE • ETIQUETTE', intro: 'Titles, families and plus-ones — addressing that offends nobody.', h2: 'Order of Names', body: 'Outer envelope formal, inner envelope warm; children and plus-ones named, never assumed.', points: ['Full titles outside', 'Warm names inside', 'Name every plus-one'] },
-    { slug: 'pressing-marigold', cat: 'craft', badge: 'Craft', gold: true, title: 'Pressing Marigold That Lasts', desc: 'Pick, press and seal petals for decades.', img: '../images/post-marigold.jpg', tag: 'CRAFT • PETALS', intro: 'Marigold keeps its gold for decades — if you pick and press it right.', h2: 'Pick Dry, Press Flat', body: 'Mid-morning blooms, blotters changed weekly, three full weeks under weight.', points: ['Pick after dew lifts', 'Change blotters weekly', 'Press 21+ days'] },
-    { slug: 'pen-pairings', cat: 'tips', badge: 'Tips', title: 'Pen Pairings for Cotton Paper', desc: 'Inks that glide and never feather.', img: '../images/post-pens.jpg', tag: 'TIPS • TOOLS', intro: 'Cotton drinks ink — pair the wrong pen and lines feather by morning.', h2: 'Wet Ink, Patient Hand', body: 'Gel and fountain pens with quick-dry ink glide on 300 GSM; ballpoints skip, markers bleed.', points: ['Quick-dry gel or fountain', 'Test on a swatch first', 'Let lines dry flat'] },
-    { slug: 'rsvp-wording', cat: 'guide', badge: 'Guide', title: 'RSVP Wording That Works', desc: 'Deadlines guests actually answer.', img: '../images/post-rsvp.jpg', tag: 'GUIDE • RSVP', intro: 'A deadline guests answer beats a pretty card they ignore.', h2: 'One Date, One Way', body: 'Give a single reply-by date and one reply path; follow once, kindly.', points: ['One reply-by date', 'One reply path', 'One kind nudge'] },
-    { slug: 'gold-foil', cat: 'craft', badge: 'Craft', gold: true, title: 'Gold Foil Without Cracks', desc: 'Heat, pressure and patience, balanced.', img: '../images/post-foil.jpg', tag: 'CRAFT • FOIL', intro: 'Foil cracks when heat, pressure and dwell fight each other.', h2: 'Balance the Three', body: 'Medium heat, firm even pressure, short dwell — then let the sheet rest before handling.', points: ['Medium heat first', 'Even firm pressure', 'Rest sheets after'] },
-    { slug: 'mailing-safely', cat: 'tips', badge: 'Tips', title: 'Mailing Deckle Cards Safely', desc: 'Sleeves, stiffness and postage tips.', img: '../images/post-mailing.jpg', tag: 'TIPS • POST', intro: 'Deckle edges survive the post with sleeves, stiffness and the right stamp.', h2: 'Sleeve It Rigid', body: 'Biodegradable sleeve, rigid mailer, correct postage — and nothing marked for machines.', points: ['Sleeve every card', 'Use rigid mailers', 'Weigh before stamping'] },
-    { slug: 'birthday-timelines', cat: 'occasions', badge: 'Occasions', sage: true, title: 'Birthday Card Timelines', desc: 'When to order, write and post.', img: '../images/post-birthday.jpg', tag: 'OCCASIONS • TIMING', intro: 'Order, write and post on time — birthdays wait for nobody.', h2: 'Count Backwards', body: 'Custom orders need 12–16 days; write a week ahead, post three days early.', points: ['Order 3 weeks ahead', 'Write a week early', 'Post 3 days prior'] },
-    { slug: 'wedding-checklist', cat: 'occasions', badge: 'Occasions', sage: true, title: 'Wedding Suite Checklist', desc: 'Every piece, from save-date to thanks.', img: '../images/post-wedding.jpg', tag: 'OCCASIONS • WEDDING', intro: 'Save-dates to thank-yous — every paper piece in order.', h2: 'In Invitation Order', body: 'Save-date, invite + RSVP, day-of paper, then thank-you notelets — one studio for all four.', points: ['Save-date first', 'Invite + RSVP suite', 'Thanks after the day'] },
-    { slug: 'festive-guide', cat: 'occasions', badge: 'Occasions', sage: true, title: 'Festive Gifting Guide', desc: 'Diwali to Christmas, boxed right.', img: '../images/post-festive.jpg', tag: 'OCCASIONS • FESTIVE', intro: 'Diwali to Christmas — gift boxes that arrive ready to hand over.', h2: 'Box It Beautiful', body: 'Eight pressed notelets, hand-torn tags and twine — boxed sets from ₹1,850.', points: ['Pick an 8-box set', 'Add hand-torn tags', 'Ship before the rush'] }
+    { slug: 'invitation-wording', cat: 'guide', badge: 'Guide', title: 'Invitation Wording Etiquette', desc: 'Traditional + modern formats that never offend.', img: '../images/post-wording.jpg', tag: 'GUIDE • WORDING', author: 'Ananya Sharma', date: '28 Sep 2026 • Jaipur Paper Unit', read: '5 min read', quote: 'Formal, semi-formal or fully you — the wording tells guests exactly what to expect.', intro: 'Formal, semi-formal or fully you — the right wording tells guests exactly what to expect.', h2: 'Match Words to Mood', body: 'Spell names fully, name both hosts, state dress and gift expectations once, clearly.', points: ['Write host names in full', 'State dress code once', 'Give one clear RSVP date'], body2: 'For Indian weddings, name both families and both venues — ceremony and reception often split across days and cities. Mention the dress code once, in plain words, so outstation guests can pack right.', body3: 'Close with a single RSVP line: one date, one phone number or link. Anything more and replies scatter across WhatsApp threads you will never find again.' },
+    { slug: 'restoring-press', cat: 'craft', badge: 'Craft', gold: true, title: 'Restoring Our 1950s Press', desc: 'Cast iron, elbow grease, first perfect impression.', img: '../images/post-press.jpg', tag: 'CRAFT • PRESS', author: 'Rohan Mehta', date: '14 Sep 2026 • Delhi Press Room', read: '7 min read', quote: 'Cast iron, elbow grease and three weekends — bringing our 1950s Heidelberg back to life.', intro: 'Cast iron, elbow grease and three weekends — bringing our 1950s Heidelberg back to life.', h2: 'Patience, Then Pressure', body: 'We stripped a century of ink, re-levelled the platen and pulled test sheets until the kiss was even.', points: ['Strip old ink fully', 'Level the platen', 'Proof until even'], body2: 'The Heidelberg arrived with seized rollers and a treadle thick with a century of ink. We stripped it with solvents and patience, then re-levelled the platen so the impression kisses evenly — deep enough to feel, never enough to bruise.', body3: 'The first perfect pull took eleven test sheets. Now it prints our wedding suites at a slow 800 impressions an hour, and every card carries a bite you can feel with your eyes closed.' },
+    { slug: 'what-to-write', cat: 'tips', badge: 'Tips', title: 'What to Write Inside?', desc: '30 heartfelt lines for every occasion.', img: '../images/post-write.jpg', tag: 'TIPS • WORDING', author: 'Ananya Sharma', date: '02 Sep 2026 • Jaipur Paper Unit', read: '4 min read', quote: 'Write like you speak — short, specific and warm beats long and flowery.', intro: 'Thirty starting lines, but one rule beats them all — write like you speak.', h2: 'Say It Plain', body: 'Short, specific and warm beats long and flowery; name the memory, not just the occasion.', points: ['Name a shared memory', 'Keep it under 3 lines', 'Sign by hand, always'], body2: 'For weddings, name the couple and one memory — the sangeet dance, the filter-coffee run. For birthdays, name the year: what they did, what changed. Specific beats poetic every single time.', body3: 'Stuck? Start with “Thank you for…” or “I still remember when…”. Two lines beat a blank card, and your handwriting does the rest. Sign by hand, always — printed names fool nobody.' },
+    { slug: 'envelope-guide', cat: 'guide', badge: 'Guide', title: 'Envelope Addressing Guide', desc: 'Titles, families and plus-ones, done right.', img: '../images/post-envelope.jpg', tag: 'GUIDE • ETIQUETTE', author: 'Meera Iyer', date: '24 Aug 2026 • Delhi Studio', read: '5 min read', quote: 'Outer envelope formal, inner envelope warm — nobody offended, everybody named.', intro: 'Titles, families and plus-ones — addressing that offends nobody.', h2: 'Order of Names', body: 'Outer envelope formal, inner envelope warm; children and plus-ones named, never assumed.', points: ['Full titles outside', 'Warm names inside', 'Name every plus-one'], body2: 'Married couples go as “Mr. and Mrs. Sharma” on the outer envelope, first names inside. Children under eighteen join the inner envelope; plus-ones get named on both, never assumed with an “and guest”.', body3: 'For Indian households, list the family name once with every adult below it. When in doubt, ask the family — one quick question now beats a corrected reprint later.' },
+    { slug: 'pressing-marigold', cat: 'craft', badge: 'Craft', gold: true, title: 'Pressing Marigold That Lasts', desc: 'Pick, press and seal petals for decades.', img: '../images/post-marigold.jpg', tag: 'CRAFT • PETALS', author: 'Meera Iyer', date: '11 Aug 2026 • Jaipur Paper Unit', read: '6 min read', quote: 'Marigold keeps its gold for decades — if you pick it dry and press it flat.', intro: 'Marigold keeps its gold for decades — if you pick and press it right.', h2: 'Pick Dry, Press Flat', body: 'Mid-morning blooms, blotters changed weekly, three full weeks under weight.', points: ['Pick after dew lifts', 'Change blotters weekly', 'Press 21+ days'], body2: 'Pick mid-morning, after the dew lifts but before harsh sun dulls the gold. Choose flat, unblemished heads and press the same day — marigold bruises fast once cut.', body3: 'Change blotters every week or trapped moisture browns the edges. After 21 days under weight, store finished petals with silica sachets — they will hold colour for decades.' },
+    { slug: 'pen-pairings', cat: 'tips', badge: 'Tips', title: 'Pen Pairings for Cotton Paper', desc: 'Inks that glide and never feather.', img: '../images/post-pens.jpg', tag: 'TIPS • TOOLS', author: 'Rohan Mehta', date: '29 Jul 2026 • Delhi Press Room', read: '4 min read', quote: 'Cotton drinks ink — pair the wrong pen and your lines feather by morning.', intro: 'Cotton drinks ink — pair the wrong pen and lines feather by morning.', h2: 'Wet Ink, Patient Hand', body: 'Gel and fountain pens with quick-dry ink glide on 300 GSM; ballpoints skip, markers bleed.', points: ['Quick-dry gel or fountain', 'Test on a swatch first', 'Let lines dry flat'], body2: 'Fountain pens with quick-dry ink glide beautifully on cotton, but always test first — wet writers feather on soft fibres. Pigment-based gel pens are the safest all-rounder for addressing and notes alike.', body3: 'Avoid ballpoints on deckle cotton: they skip and need pressure that dents the sheet. And never use markers — they bleed straight through 300 GSM before you lift the nib.' },
+    { slug: 'rsvp-wording', cat: 'guide', badge: 'Guide', title: 'RSVP Wording That Works', desc: 'Deadlines guests actually answer.', img: '../images/post-rsvp.jpg', tag: 'GUIDE • RSVP', author: 'Ananya Sharma', date: '18 Jul 2026 • Jaipur Paper Unit', read: '5 min read', quote: 'A deadline guests answer beats a pretty card they ignore.', intro: 'A deadline guests answer beats a pretty card they ignore.', h2: 'One Date, One Way', body: 'Give a single reply-by date and one reply path; follow once, kindly.', points: ['One reply-by date', 'One reply path', 'One kind nudge'], body2: 'Set the reply-by date three weeks before you must confirm caterers, then follow up once, kindly, a week after. Most late replies are forgetfulness, not rudeness — one nudge recovers half of them.', body3: 'Offer exactly one reply path: a number, a link, or a card — never all three. Every extra option halves your response rate and doubles your tracking headache.' },
+    { slug: 'gold-foil', cat: 'craft', badge: 'Craft', gold: true, title: 'Gold Foil Without Cracks', desc: 'Heat, pressure and patience, balanced.', img: '../images/post-foil.jpg', tag: 'CRAFT • FOIL', author: 'Rohan Mehta', date: '06 Jul 2026 • Delhi Press Room', read: '6 min read', quote: 'Foil cracks when heat, pressure and dwell fight each other — balance all three.', intro: 'Foil cracks when heat, pressure and dwell fight each other.', h2: 'Balance the Three', body: 'Medium heat, firm even pressure, short dwell — then let the sheet rest before handling.', points: ['Medium heat first', 'Even firm pressure', 'Rest sheets after'], body2: 'Start at medium heat with firm, even pressure and a short dwell. Too hot and the foil blisters; too cool and it flakes at the edges. Cotton rag forgives more than coated stock — but not everything.', body3: 'Let foiled sheets rest a full day before trimming or stacking; the bond keeps curing after the press opens. Handle by the edges — fingerprints on fresh foil never come off.' },
+    { slug: 'mailing-safely', cat: 'tips', badge: 'Tips', title: 'Mailing Deckle Cards Safely', desc: 'Sleeves, stiffness and postage tips.', img: '../images/post-mailing.jpg', tag: 'TIPS • POST', author: 'Meera Iyer', date: '22 Jun 2026 • Jaipur Paper Unit', read: '4 min read', quote: 'Deckle edges survive the post with sleeves, stiffness and the right stamp.', intro: 'Deckle edges survive the post with sleeves, stiffness and the right stamp.', h2: 'Sleeve It Rigid', body: 'Biodegradable sleeve, rigid mailer, correct postage — and nothing marked for machines.', points: ['Sleeve every card', 'Use rigid mailers', 'Weigh before stamping'], body2: 'Slide every card into a biodegradable sleeve, then a rigid mailer — never a soft envelope. Deckle edges catch in sorting machines, so stiffness, not markings, is what saves them.', body3: 'Weigh a packed sample at the post office before buying stamps in bulk. A 300 GSM deckle card with sleeve crosses standard slabs fast, and returned post costs more than correct postage.' },
+    { slug: 'birthday-timelines', cat: 'occasions', badge: 'Occasions', sage: true, title: 'Birthday Card Timelines', desc: 'When to order, write and post.', img: '../images/post-birthday.jpg', tag: 'OCCASIONS • TIMING', author: 'Ananya Sharma', date: '09 Jun 2026 • Delhi Studio', read: '5 min read', quote: 'Order, write and post on time — birthdays wait for nobody.', intro: 'Order, write and post on time — birthdays wait for nobody.', h2: 'Count Backwards', body: 'Custom orders need 12–16 days; write a week ahead, post three days early.', points: ['Order 3 weeks ahead', 'Write a week early', 'Post 3 days prior'], body2: 'Custom orders need 12–16 working days: proofing, pressing, drying, foiling. Add a week in wedding season and the Diwali rush, when the studio queue doubles overnight.', body3: 'Write your message a week before the date, not the night before — ink needs a day to cure on cotton, and tired handwriting shows. Post three days early; hand-deliver if you can.' },
+    { slug: 'wedding-checklist', cat: 'occasions', badge: 'Occasions', sage: true, title: 'Wedding Suite Checklist', desc: 'Every piece, from save-date to thanks.', img: '../images/post-wedding.jpg', tag: 'OCCASIONS • WEDDING', author: 'Meera Iyer', date: '27 May 2026 • Jaipur Paper Unit', read: '7 min read', quote: 'Save-dates to thank-yous — every paper piece in its right order.', intro: 'Save-dates to thank-yous — every paper piece in order.', h2: 'In Invitation Order', body: 'Save-date, invite + RSVP, day-of paper, then thank-you notelets — one studio for all four.', points: ['Save-date first', 'Invite + RSVP suite', 'Thanks after the day'], body2: 'Start with save-dates six months out, then the main suite: invitation, RSVP, and inserts for travel and events. Day-of paper — menus, place cards, signage — comes last, once guest counts freeze.', body3: 'Order 10% extra of everything; reprints of letterpress suites cost nearly as much as the first run. And keep one full suite untouched — couples always want a keepsake set later.' },
+    { slug: 'festive-guide', cat: 'occasions', badge: 'Occasions', sage: true, title: 'Festive Gifting Guide', desc: 'Diwali to Christmas, boxed right.', img: '../images/post-festive.jpg', tag: 'OCCASIONS • FESTIVE', author: 'Ananya Sharma', date: '15 May 2026 • Delhi Studio', read: '5 min read', quote: 'Diwali to Christmas — gift boxes that arrive ready to hand over.', intro: 'Diwali to Christmas — gift boxes that arrive ready to hand over.', h2: 'Box It Beautiful', body: 'Eight pressed notelets, hand-torn tags and twine — boxed sets from ₹1,850.', points: ['Pick an 8-box set', 'Add hand-torn tags', 'Ship before the rush'], body2: 'For Diwali pick marigold and deep reds; for Christmas, pine green with gold foil. Order gift boxes before the festive rush — courier networks choke in the final ten days and “urgent” becomes impossible.', body3: 'Add hand-torn gift tags with the recipient name in calligraphy — a two-minute touch that makes a boxed set feel personal. Corporate orders over fifty boxes get custom sleeves and a single invoice.' }
   ];
   function initBlogPost() {
     var title = document.querySelector('[data-post-title]');
     if (!title) return;
     var slug = null;
     try { slug = new URLSearchParams(window.location.search).get('post'); } catch (e) { slug = null; }
-    var post = null;
-    for (var i = 0; i < BLOG_POSTS.length; i++) { if (BLOG_POSTS[i].slug === slug) { post = BLOG_POSTS[i]; break; } }
+    var idx = -1;
+    for (var i = 0; i < BLOG_POSTS.length; i++) { if (BLOG_POSTS[i].slug === slug) { idx = i; break; } }
+    var post = idx > -1 ? BLOG_POSTS[idx] : null;
     function set(sel, fn) { var el = document.querySelector(sel); if (el) fn(el); }
+    function setAll(sel, fn) { document.querySelectorAll(sel).forEach(function (el) { fn(el); }); }
     if (post) {
-      set('[data-post-tag]', function (el) { el.textContent = post.tag; });
+      set('[data-post-badge]', function (el) {
+        el.textContent = post.badge;
+        el.className = 'post-badge' + (post.gold ? ' post-badge--gold' : '') + (post.sage ? ' post-badge--sage' : '');
+      });
+      set('[data-post-read]', function (el) { el.textContent = post.read; });
       title.textContent = post.title;
       set('[data-post-crumb]', function (el) { el.textContent = post.title; });
       set('[data-post-intro]', function (el) { el.textContent = post.intro; });
+      set('[data-post-quote]', function (el) { el.textContent = post.quote; });
       set('[data-post-h2]', function (el) { el.textContent = post.h2; });
       set('[data-post-body]', function (el) { el.textContent = post.body; });
+      set('[data-post-body2]', function (el) { el.textContent = post.body2; });
+      set('[data-post-body3]', function (el) { el.textContent = post.body3; });
       set('[data-post-img]', function (el) { el.src = post.img; el.setAttribute('data-zoom', post.img); el.alt = post.title; });
+      set('[data-post-caption]', function (el) { el.textContent = post.desc + ' — from our studio journal.'; });
+      setAll('[data-post-author]', function (el) { el.textContent = post.author; });
+      setAll('[data-post-initials]', function (el) { el.textContent = authorInitials(post.author); });
+      set('[data-post-date]', function (el) { el.textContent = post.date; });
+      var meta = AUTHORS[post.author] || { role: 'Studio Contributor', bio: '' };
+      set('[data-post-role]', function (el) { el.textContent = meta.role; });
+      set('[data-post-bio]', function (el) { el.textContent = meta.bio; });
       document.title = post.title + ' — Journal | Ink & Imagination';
     }
     set('#post-points', function (ul) {
       var pts = post ? post.points : ['Pick dry, blemish-free blooms mid-morning.', 'Press 21+ days; change blotters weekly.', 'Store with silica; keep from direct sun.'];
-      ul.innerHTML = pts.map(function (p) { return '<li>✦ ' + p + '</li>'; }).join('');
+      ul.innerHTML = pts.map(function (p) { return '<li>' + p + '</li>'; }).join('');
     });
     set('#related-grid', function (grid) {
       var rel = BLOG_POSTS.filter(function (p) { return !post || (p.slug !== post.slug && p.cat === post.cat); }).slice(0, 3);
@@ -786,6 +810,55 @@
         return '<article class="post-card"><div class="post-media"><img src="' + p.img + '" alt="' + p.title + '" class="post-img" loading="lazy"><span class="' + cls + '">' + p.badge + '</span></div><div class="post-body"><h3 class="post-title"><a href="blog-detail.html?post=' + p.slug + '">' + p.title + '</a></h3><p class="post-desc">' + p.desc + '</p><div class="post-foot"><a href="blog-detail.html?post=' + p.slug + '" class="post-link">Read <span aria-hidden="true">→</span></a></div></div></article>';
       }).join('');
     });
+    // Prev / next article navigation (wraps around the journal order).
+    var total = BLOG_POSTS.length;
+    var cur = idx > -1 ? idx : 0;
+    var prev = BLOG_POSTS[(cur - 1 + total) % total];
+    var next = BLOG_POSTS[(cur + 1) % total];
+    set('#prev-post', function (a) { a.href = 'blog-detail.html?post=' + prev.slug; });
+    set('#prev-title', function (el) { el.textContent = prev.title; });
+    set('#next-post', function (a) { a.href = 'blog-detail.html?post=' + next.slug; });
+    set('#next-title', function (el) { el.textContent = next.title; });
+    // Share: copy link + prefilled X / WhatsApp intents.
+    var pageUrl = window.location.href;
+    var shareText = title.textContent.trim();
+    function enc(s) { try { return encodeURIComponent(s); } catch (e) { return ''; } }
+    set('#share-x', function (a) { a.href = 'https://twitter.com/intent/tweet?text=' + enc(shareText) + '&url=' + enc(pageUrl); });
+    set('#share-wa', function (a) { a.href = 'https://wa.me/?text=' + enc(shareText + ' ' + pageUrl); });
+    var copyBtn = document.getElementById('share-copy');
+    if (copyBtn && !copyBtn.dataset.bound) {
+      copyBtn.dataset.bound = '1';
+      copyBtn.addEventListener('click', function () {
+        function done() { window.showToast('Article link copied to clipboard.', 'success'); }
+        function fail() { window.showToast('Could not copy — long-press the URL instead.', 'error'); }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(pageUrl).then(done, fail);
+        } else {
+          try {
+            var ta = document.createElement('textarea');
+            ta.value = pageUrl;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            ta.remove();
+            done();
+          } catch (e) { fail(); }
+        }
+      });
+    }
+  }
+
+  /* ---------- Reading progress bar (article pages) ---------- */
+  function initReadingProgress() {
+    var bar = document.getElementById('reading-bar');
+    if (!bar) return;
+    var doc = document.documentElement;
+    function update() {
+      var max = doc.scrollHeight - doc.clientHeight;
+      bar.style.width = (max > 0 ? (doc.scrollTop / max) * 100 : 0) + '%';
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
   }
 
   /* ---------- Init ---------- */
@@ -811,6 +884,7 @@
     initPassword();
     initPostFilter();
     initBlogPost();
+    initReadingProgress();
     document.querySelectorAll('#theme-toggle, #theme-toggle-mobile').forEach(function (b) { b.addEventListener('click', toggleTheme); });
     document.querySelectorAll('#dir-toggle, #dir-toggle-mobile').forEach(function (b) { b.addEventListener('click', toggleDir); });
     document.body.classList.add('page-enter');
