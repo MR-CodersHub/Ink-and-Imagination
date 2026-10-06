@@ -334,6 +334,27 @@ section { padding-block: var(--space-3xl); position: relative; }
   background-color: var(--terracotta);
   transform: translateY(-1px);
 }
+.nav-login {
+  padding: 0.5rem 1.25rem;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: border-color var(--t-fast) ease, background-color var(--t-fast) ease, transform var(--t-fast) ease;
+  white-space: nowrap;
+}
+.nav-login:hover {
+  border-color: var(--marigold);
+  background-color: var(--bg-secondary);
+  transform: translateY(-1px);
+}
+.nav-login.active {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+}
 [data-theme="dark"] .nav-cta {
   background: var(--marigold);
   color: var(--ink-plum);
@@ -1196,7 +1217,10 @@ section { padding-block: var(--space-3xl); position: relative; }
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 50% 0%, rgba(212,166,74,.12) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
 }
+.page-hero .container,
 .page-hero-content { position: relative; z-index: 2; }
 .page-hero-title { margin-bottom: var(--space-md); }
 .page-hero-desc { max-width: 560px; margin-inline: auto; font-size: 1.05rem; }
@@ -2232,7 +2256,7 @@ section { padding-block: var(--space-3xl); position: relative; }
   .nav-link { font-size: 0.72rem; letter-spacing: 0.05em; white-space: nowrap; }
   .nav-logo-mark { width: 36px; height: 36px; }
   .nav-logo-name { font-size: 1.3rem; }
-  .nav-cta { padding: 0.45rem 1rem; font-size: 0.75rem; }
+  .nav-cta, .nav-login { padding: 0.45rem 1rem; font-size: 0.75rem; }
   .nav-controls { gap: var(--space-sm); }
 }
 @media (max-width: 1024px) {
@@ -2259,7 +2283,7 @@ section { padding-block: var(--space-3xl); position: relative; }
   section { padding-block: var(--space-2xl); }
   .nav-links { display: none; }
   .hamburger { display: flex; }
-  .nav-cta { display: none; }
+  .nav-cta, .nav-login { display: none; }
   .collections-grid { grid-template-columns: 1fr; }
   .bestsellers-grid { grid-template-columns: 1fr 1fr; }
   .products-grid { grid-template-columns: 1fr 1fr; }

@@ -42,6 +42,15 @@
     root.setAttribute('data-theme', t);
     try { localStorage.setItem(THEME_KEY, t); } catch (e) {}
     document.querySelectorAll('#theme-toggle, #theme-toggle-mobile, [data-theme-icon]').forEach(function (b) {
+      var iconSlot = b.querySelector ? b.querySelector('[data-theme-icon]') : null;
+      var labelSlot = b.querySelector ? b.querySelector('[data-theme-label]') : null;
+      if (iconSlot || labelSlot) {
+        if (iconSlot) iconSlot.innerHTML = t === 'dark' ? ICON_SUN : ICON_MOON;
+        if (labelSlot) labelSlot.textContent = t === 'dark' ? 'Dark' : 'Light';
+        b.classList.toggle('is-dark', t === 'dark');
+        b.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        return;
+      }
       b.innerHTML = t === 'dark' ? ICON_SUN : ICON_MOON;
       b.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
     });
@@ -66,6 +75,13 @@
     root.setAttribute('dir', d);
     try { localStorage.setItem(DIR_KEY, d); } catch (e) {}
     document.querySelectorAll('#dir-toggle, #dir-toggle-mobile, [data-dir-icon]').forEach(function (b) {
+      var labelSlot = b.querySelector ? b.querySelector('[data-dir-label]') : null;
+      if (labelSlot) {
+        labelSlot.textContent = d === 'rtl' ? 'RTL' : 'LTR';
+        b.classList.toggle('is-rtl', d === 'rtl');
+        b.setAttribute('aria-label', 'Switch layout direction (current: ' + d.toUpperCase() + ')');
+        return;
+      }
       b.textContent = d === 'rtl' ? 'LTR' : 'RTL';
       b.setAttribute('aria-label', 'Switch layout direction (current: ' + d.toUpperCase() + ')');
     });
@@ -292,8 +308,10 @@
     return true;
   }
   function initForms() {
-    document.querySelectorAll('form[data-validate], form[data-ajax="true"], #enquiry-form, #quote-form, #newsletter-form, #notify-form, #login-form, #register-form').forEach(function (form) {
+    document.querySelectorAll('form[data-validate], form[data-ajax="true"], #enquiry-form, #quote-form, #newsletter-form, #notify-form, #login-form, #register-form, #signup-form').forEach(function (form) {
       if (form.dataset.bound) return;
+      // Auth forms have their own handler (initAuth) with home-page redirect — skip generic toast here.
+      if (form.id === 'login-form' || form.id === 'register-form' || form.id === 'signup-form') return;
       form.dataset.bound = '1';
       form.setAttribute('novalidate', 'novalidate');
       form.querySelectorAll('input, select, textarea').forEach(function (inp) {
@@ -329,7 +347,7 @@
     });
   }
 
-  /* ---------- Auth tabs (login/register on one page, no dashboard) ---------- */
+  /* ---------- Auth tabs (supports old button tabs + new Login/Sign Up link tabs) ---------- */
   function initAuthTabs() {
     var tabLogin = document.getElementById('tab-login');
     var tabReg = document.getElementById('tab-register');
@@ -347,6 +365,289 @@
     }
     tabLogin.addEventListener('click', function () { show('login'); });
     tabReg.addEventListener('click', function () { show('register'); });
+  }
+
+  /* ---------- Auth (login + signup, localStorage demo) ---------- */
+  var USERS_KEY = 'ii-users';
+  var SESSION_KEY = 'ii-session';
+  function getUsers() {
+    try {
+      var raw = localStorage.getItem(USERS_KEY);
+      var arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr : [];
+    } catch (e) { return []; }
+  }
+  function saveUsers(users) {
+    try { localStorage.setItem(USERS_KEY, JSON.stringify(users)); } catch (e) {}
+  }
+  function getSession() {
+    try {
+      var raw = localStorage.getItem(SESSION_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+  function setSession(sess) {
+    try { localStorage.setItem(SESSION_KEY, JSON.stringify(sess)); } catch (e) {}
+  }
+  function hashPass(pw) {
+    try {
+      if (window.btoa) return 'b64$' + window.btoa(unescape(encodeURIComponent(pw)));
+    } catch (e) {}
+    return 'plain$' + pw;
+  }
+  function homeTarget() {
+    try {
+      var q = new URLSearchParams(window.location.search);
+      var next = q.get('redirect') || q.get('next');
+      if (next && !/^https?:\/\//i.test(next) && next.indexOf('..') === -1) return next;
+    } catch (e) {}
+    // login.html / signup.html live in pages/ → home is ../index.html
+    return window.location.pathname.indexOf('/pages/') !== -1 ? '../index.html' : 'index.html';
+  }
+  function redirectHome(delay) {
+    var target = homeTarget();
+    setTimeout(function () { window.location.href = target; }, delay || 900);
+  }
+  function renderAuthState() {
+    var slots = document.querySelectorAll('[data-auth-state]');
+    if (!slots.length) return;
+    var sess = getSession();
+    slots.forEach(function (slot) {
+      if (sess && sess.email) {
+        slot.innerHTML = '<div class="form-card" style="margin-bottom:1.2rem;display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap;">' +
+          '<span>Logged in as <strong>' + String(sess.name || sess.email).replace(/[<>&"]/g, '') + '</strong></span>' +
+          '<span style="display:flex;gap:.6rem;"><a class="btn btn-outline btn-sm" href="' + homeTarget() + '">Go Home →</a>' +
+          '<button class="btn btn-outline btn-sm" type="button" data-logout>Logout</button></span></div>';
+      } else {
+        slot.innerHTML = '';
+      }
+    });
+    document.querySelectorAll('[data-logout]').forEach(function (btn) {
+      if (btn.dataset.bound) return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', function () {
+        try { localStorage.removeItem(SESSION_KEY); } catch (e) {}
+        window.showToast('Logged out. See you soon!', 'info');
+        renderAuthState();
+      });
+    });
+  }
+  function initAuth() {
+    renderAuthState();
+    // If already logged in on login/signup pages, offer one-click home (no forced redirect).
+    var sess = getSession();
+    if (sess && sess.email) {
+      var f = document.getElementById('login-form') || document.getElementById('signup-form') || document.getElementById('register-form');
+      if (f && !document.querySelector('[data-auth-state]')) window.showToast('Already logged in as ' + (sess.name || sess.email) + '.', 'info');
+    }
+
+    var loginForm = document.getElementById('login-form');
+    if (loginForm && !loginForm.dataset.bound) {
+      loginForm.dataset.bound = '1';
+      loginForm.setAttribute('novalidate', 'novalidate');
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var emailEl = loginForm.querySelector('input[type="email"], input[name="email"]');
+        var passEl = loginForm.querySelector('input[type="password"], input[name="password"]');
+        var email = emailEl ? (emailEl.value || '').trim().toLowerCase() : '';
+        var pass = passEl ? (passEl.value || '') : '';
+        var ok = true;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+          setErr(emailEl.closest('.field') || emailEl.parentElement, 'Please enter a valid email.');
+          ok = false;
+        } else setErr(emailEl.closest('.field') || emailEl.parentElement, '');
+        if (!pass) {
+          setErr(passEl.closest('.field') || passEl.parentElement, 'Please enter your password.');
+          ok = false;
+        } else setErr(passEl.closest('.field') || passEl.parentElement, '');
+        if (!ok) { window.showToast('Please fix the highlighted fields.', 'error'); return; }
+        // Demo mode: any email + any password works. New emails get an
+        // account created on the fly; existing ones log straight in.
+        var users = getUsers();
+        var user = null;
+        for (var i = 0; i < users.length; i++) {
+          if ((users[i].email || '').toLowerCase() === email) { user = users[i]; break; }
+        }
+        if (!user) {
+          var local = email.split('@')[0].replace(/[._-]+/g, ' ').trim();
+          user = { name: local || 'Studio Friend', email: email, pass: hashPass(pass), at: new Date().toISOString() };
+          users.push(user);
+          saveUsers(users);
+        } else {
+          user.pass = hashPass(pass);
+          if (!user.name) user.name = email.split('@')[0].replace(/[._-]+/g, ' ').trim() || 'Studio Friend';
+          saveUsers(users);
+        }
+        var btn = loginForm.querySelector('button[type="submit"]');
+        var original = btn ? btn.innerHTML : '';
+        if (btn) { btn.disabled = true; btn.innerHTML = 'Logging in…'; }
+        setSession({ email: user.email, name: user.name, at: new Date().toISOString() });
+        renderAuthState();
+        window.showToast('Welcome back, ' + (user.name || 'friend') + '! Redirecting to home…', 'success');
+        loginForm.reset();
+        if (btn) setTimeout(function () { btn.disabled = false; btn.innerHTML = original; }, 1200);
+        redirectHome(900);
+      });
+    }
+
+    ['signup-form', 'register-form'].forEach(function (id) {
+      var form = document.getElementById(id);
+      if (!form || form.dataset.bound) return;
+      form.dataset.bound = '1';
+      form.setAttribute('novalidate', 'novalidate');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var nameEl = form.querySelector('input[name="name"]');
+        var emailEl = form.querySelector('input[type="email"], input[name="email"]');
+        var passEl = form.querySelector('input[name="password"]');
+        var confEl = form.querySelector('input[name="confirm"]');
+        var name = nameEl ? (nameEl.value || '').trim() : '';
+        var email = emailEl ? (emailEl.value || '').trim().toLowerCase() : '';
+        var pass = passEl ? (passEl.value || '') : '';
+        var conf = confEl ? (confEl.value || '') : pass;
+        var ok = true;
+        function mark(el, msg) {
+          if (!el) return;
+          setErr(el.closest('.field') || el.parentElement, msg);
+          if (msg) ok = false;
+        }
+        mark(nameEl, !name || name.length < 2 ? 'Please enter your name.' : '');
+        mark(emailEl, !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) ? 'Please enter a valid email.' : '');
+        mark(passEl, !pass || pass.length < 6 ? 'Password must be at least 6 characters.' : '');
+        if (confEl) mark(confEl, conf !== pass ? 'Passwords do not match.' : '');
+        if (!ok) { window.showToast('Please fix the highlighted fields.', 'error'); return; }
+        var users = getUsers();
+        for (var i = 0; i < users.length; i++) {
+          if ((users[i].email || '').toLowerCase() === email) {
+            window.showToast('This email is already registered. Please login.', 'error');
+            return;
+          }
+        }
+        var user = { name: name, email: email, pass: hashPass(pass), at: new Date().toISOString() };
+        users.push(user);
+        saveUsers(users);
+        setSession({ email: user.email, name: user.name, at: user.at });
+        renderAuthState();
+        var btn = form.querySelector('button[type="submit"]');
+        var original = btn ? btn.innerHTML : '';
+        if (btn) { btn.disabled = true; btn.innerHTML = 'Creating account…'; }
+        window.showToast('Account created — welcome, ' + (name || 'friend') + '! Redirecting to home…', 'success');
+        form.reset();
+        if (btn) setTimeout(function () { btn.disabled = false; btn.innerHTML = original; }, 1200);
+        redirectHome(900);
+      });
+    });
+  }
+
+  /* ---------- Social login (Google / Facebook OAuth) ----------
+     Fill in your own IDs to go live. Until then the buttons explain
+     what is missing instead of failing silently. */
+  var GOOGLE_CLIENT_ID = ''; // e.g. '1234567890-abc123.apps.googleusercontent.com'
+  var FACEBOOK_APP_ID = ''; // e.g. '1234567890123456'
+  function loadScriptOnce(src, globalName) {
+    return new Promise(function (resolve, reject) {
+      if (globalName && window[globalName]) { resolve(); return; }
+      var s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+      s.defer = true;
+      s.onload = function () { resolve(); };
+      s.onerror = function () { reject(new Error('load failed: ' + src)); };
+      document.head.appendChild(s);
+    });
+  }
+  function socialSession(name, email, provider) {
+    name = (name || 'Studio Friend').toString();
+    email = (email || '').toString().trim().toLowerCase();
+    if (!email) { window.showToast('Could not read your ' + provider + ' email.', 'error'); return; }
+    var users = getUsers();
+    var found = false;
+    for (var i = 0; i < users.length; i++) {
+      if ((users[i].email || '').toLowerCase() === email) {
+        if (!users[i].name) users[i].name = name;
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      users.push({ name: name, email: email, pass: 'oauth$' + provider, at: new Date().toISOString() });
+      saveUsers(users);
+    }
+    setSession({ email: email, name: name, at: new Date().toISOString(), via: provider });
+    renderAuthState();
+    initNavAuth();
+    window.showToast('Signed in with ' + provider + ' — redirecting home…', 'success');
+    redirectHome(900);
+  }
+  function socialGoogle(btn) {
+    if (!GOOGLE_CLIENT_ID) {
+      window.showToast('Google sign-in needs a Client ID — add yours in js/main.js (GOOGLE_CLIENT_ID).', 'info');
+      return;
+    }
+    btn.disabled = true;
+    loadScriptOnce('https://accounts.google.com/gsi/client', 'google').then(function () {
+      var client = window.google.accounts.oauth2.initTokenClient({
+        client_id: GOOGLE_CLIENT_ID,
+        scope: 'openid profile email',
+        callback: function (res) {
+          btn.disabled = false;
+          if (!res || !res.access_token) { window.showToast('Google sign-in was cancelled.', 'error'); return; }
+          fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+            headers: { Authorization: 'Bearer ' + res.access_token }
+          }).then(function (r) { return r.json(); }).then(function (u) {
+            socialSession(u.name, u.email, 'Google');
+          }).catch(function () { window.showToast('Could not fetch your Google profile.', 'error'); });
+        }
+      });
+      client.requestAccessToken();
+    }).catch(function () {
+      btn.disabled = false;
+      window.showToast('Could not load Google sign-in. Check your connection.', 'error');
+    });
+  }
+  function socialFacebook(btn) {
+    if (!FACEBOOK_APP_ID) {
+      window.showToast('Facebook login needs an App ID — add yours in js/main.js (FACEBOOK_APP_ID).', 'info');
+      return;
+    }
+    btn.disabled = true;
+    loadScriptOnce('https://connect.facebook.net/en_US/sdk.js', 'FB').then(function () {
+      window.FB.init({ appId: FACEBOOK_APP_ID, version: 'v21.0' });
+      window.FB.login(function (res) {
+        btn.disabled = false;
+        if (!res || res.status !== 'connected') { window.showToast('Facebook login was cancelled.', 'error'); return; }
+        window.FB.api('/me', { fields: 'name,email' }, function (u) {
+          socialSession(u && u.name, u && u.email, 'Facebook');
+        });
+      }, { scope: 'public_profile,email' });
+    }).catch(function () {
+      btn.disabled = false;
+      window.showToast('Could not load Facebook login. Check your connection.', 'error');
+    });
+  }
+  function initSocialAuth() {
+    var btns = document.querySelectorAll('[data-social]');
+    if (!btns.length) return;
+    btns.forEach(function (btn) {
+      if (btn.dataset.bound) return;
+      btn.dataset.bound = '1';
+      btn.addEventListener('click', function () {
+        var provider = btn.getAttribute('data-social');
+        if (provider === 'google') socialGoogle(btn);
+        else if (provider === 'facebook') socialFacebook(btn);
+      });
+    });
+  }
+
+  /* ---------- Nav login button (shows greeting when signed in) ---------- */
+  function initNavAuth() {
+    var sess = getSession();
+    if (!sess || !sess.email) return;
+    var first = String(sess.name || sess.email).split(' ')[0];
+    document.querySelectorAll('[data-nav-auth="login"]').forEach(function (btn) {
+      btn.textContent = 'Hi, ' + first;
+      btn.setAttribute('title', 'Logged in as ' + (sess.name || sess.email));
+    });
   }
 
   /* ---------- Countdown (coming soon) ---------- */
@@ -503,6 +804,9 @@
     initAnchors();
     initForms();
     initAuthTabs();
+    initAuth();
+    initSocialAuth();
+    initNavAuth();
     initCountdown();
     initPassword();
     initPostFilter();
