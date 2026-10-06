@@ -111,11 +111,33 @@
     var btn = document.getElementById('hamburger-btn');
     var menu = document.getElementById('mobile-menu');
     if (!btn || !menu) return;
+    var lastScroll = 0;
     function setOpen(open) {
       menu.classList.toggle('open', open);
       btn.classList.toggle('open', open);
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      document.body.style.overflow = open ? 'hidden' : '';
+      var doc = document.documentElement;
+      if (open) {
+        // Hard scroll-lock: overflow alone is ignored by mobile browsers,
+        // so freeze the body in place and restore the position on close.
+        lastScroll = window.scrollY || doc.scrollTop || 0;
+        document.body.style.overflow = 'hidden';
+        doc.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = (-lastScroll) + 'px';
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.body.style.width = '100%';
+      } else {
+        document.body.style.overflow = '';
+        doc.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
+        window.scrollTo(0, lastScroll);
+      }
     }
     btn.addEventListener('click', function () { setOpen(!menu.classList.contains('open')); });
     menu.querySelectorAll('a').forEach(function (a) {
