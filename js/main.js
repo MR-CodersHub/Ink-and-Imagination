@@ -581,7 +581,8 @@
   }
   function socialGoogle(btn) {
     if (!GOOGLE_CLIENT_ID) {
-      window.showToast('Google sign-in needs a Client ID — add yours in js/main.js (GOOGLE_CLIENT_ID).', 'info');
+      // Demo mode: skip real OAuth, link straight to the home page.
+      socialSession('Google User', 'google.user@demo.local', 'Google');
       return;
     }
     btn.disabled = true;
@@ -607,7 +608,8 @@
   }
   function socialFacebook(btn) {
     if (!FACEBOOK_APP_ID) {
-      window.showToast('Facebook login needs an App ID — add yours in js/main.js (FACEBOOK_APP_ID).', 'info');
+      // Demo mode: skip real OAuth, link straight to the home page.
+      socialSession('Facebook User', 'facebook.user@demo.local', 'Facebook');
       return;
     }
     btn.disabled = true;
@@ -807,7 +809,7 @@
       if (!post) rel = BLOG_POSTS.slice(0, 3);
       grid.innerHTML = rel.map(function (p) {
         var cls = 'post-badge' + (p.gold ? ' post-badge--gold' : '') + (p.sage ? ' post-badge--sage' : '');
-        return '<article class="post-card"><div class="post-media"><img src="' + p.img + '" alt="' + p.title + '" class="post-img" loading="lazy"><span class="' + cls + '">' + p.badge + '</span></div><div class="post-body"><h3 class="post-title"><a href="blog-detail.html?post=' + p.slug + '">' + p.title + '</a></h3><p class="post-desc">' + p.desc + '</p><div class="post-foot"><a href="blog-detail.html?post=' + p.slug + '" class="post-link">Read <span aria-hidden="true">→</span></a></div></div></article>';
+        return '<a class="related-row" href="blog-detail.html?post=' + p.slug + '"><img src="' + p.img + '" alt="' + p.title + '" loading="lazy"><span class="related-text"><span class="' + cls + '">' + p.badge + '</span><strong>' + p.title + '</strong><span class="related-desc">' + p.desc + '</span><span class="related-meta">Read <span aria-hidden="true">→</span></span></span></a>';
       }).join('');
     });
     // Prev / next article navigation (wraps around the journal order).

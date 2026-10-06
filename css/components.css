@@ -1677,7 +1677,8 @@ img, svg { max-width: 100%; }
   .hero-img, .badge-seal { animation: none !important; }
 }
 /* ── Minimal auth pages (login / signup): logo + brand + form + social ── */
-.auth-minimal { min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 2.5rem 1rem; background: var(--bg-primary); }
+.auth-minimal { min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 2.5rem 1rem; background: linear-gradient(0deg, color-mix(in srgb, var(--bg-primary) 86%, transparent), color-mix(in srgb, var(--bg-primary) 90%, transparent)), url("../images/login-bg.jpg") center / cover no-repeat, var(--bg-primary); }
+.auth-minimal.auth-signup { background: linear-gradient(0deg, color-mix(in srgb, var(--bg-primary) 86%, transparent), color-mix(in srgb, var(--bg-primary) 90%, transparent)), url("../images/signup-bg.jpg") center / cover no-repeat, var(--bg-primary); }
 .auth-card { width: 100%; max-width: 440px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: var(--shadow-card); padding: clamp(1.75rem, 4vw, 2.5rem); text-align: center; }
 .auth-brand { display: flex; flex-direction: column; align-items: center; gap: .3rem; margin-bottom: 1.4rem; text-decoration: none; color: inherit; }
 .auth-brand-mark { width: 56px; height: 56px; }
@@ -1748,7 +1749,58 @@ img, svg { max-width: 100%; }
   .article-figure img { aspect-ratio: 16 / 10; }
   .article-figure::after { transform: translate(8px, 8px); }
 }
-/* ── Compact rhythm for the journal article page (removes unwanted gaps) ── */
+/* ── Compact two-column article layout ── */
+.article-compact section { padding-block: 1.25rem; }
+.article-hero-slim .article-title { font-size: clamp(1.7rem, 4vw, 2.5rem); }
+.article-hero-slim .article-standfirst { font-size: 1rem; line-height: 1.7; }
+.article-meta-line { display: flex; gap: .55rem; justify-content: center; align-items: center; flex-wrap: wrap; font-size: .82rem; color: var(--text-muted); margin: .9rem 0 1rem; }
+.article-meta-line .post-badge { position: static; }
+.article-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 2rem; max-width: 1080px; align-items: start; }
+.article-main .article-figure { margin: 0 auto 1.25rem; }
+.article-main .article-quote { font-size: clamp(1.15rem, 2.4vw, 1.35rem); margin-bottom: 1.2rem; }
+.article-main h2 { font-size: 1.45rem; margin: 1.4rem 0 .7rem; }
+.article-main > p { line-height: 1.8; margin-bottom: .9rem; font-size: .97rem; }
+.article-main .article-note { margin: 1.2rem 0; padding: 1rem 1.2rem; font-size: .85rem; }
+.article-main .post-nav { margin-top: 1.25rem; }
+.article-main .post-nav-card { padding: .9rem 1.1rem; }
+.article-main .post-nav-card > strong { font-size: .95rem; }
+.article-side { position: sticky; top: calc(var(--nav-h) + 1rem); display: grid; gap: 1rem; align-content: start; }
+.side-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.1rem 1.2rem; box-shadow: var(--shadow-card); }
+.side-box h4 { font-size: .7rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .8rem; }
+.article-side .article-share { flex-direction: column; margin-left: 0; align-items: stretch; }
+.article-side .share-btn { justify-content: center; }
+.article-side .takeaway-list li { padding: .7rem .9rem; font-size: .87rem; line-height: 1.6; }
+.article-side .author-avatar { width: 44px; height: 44px; font-size: .95rem; }
+.author-mini { display: flex; gap: .9rem; align-items: flex-start; }
+.author-mini h3 { font-size: 1.05rem; margin: .3rem 0 .1rem; }
+.author-mini .author-bio { font-size: .83rem; line-height: 1.7; }
+.article-cta-strip { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 1.1rem 1.4rem; box-shadow: var(--shadow-card); }
+.article-cta-strip strong { font-family: var(--font-display); font-size: 1.15rem; }
+.article-cta-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+@media (max-width: 900px) {
+  .article-layout { grid-template-columns: 1fr; }
+  .article-side { position: static; grid-template-columns: 1fr 1fr; }
+  .author-mini { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .article-side { grid-template-columns: 1fr; }
+}
+/* ── Compact related-notes rows ── */
+.related-compact { display: grid; gap: .8rem; max-width: 860px; margin: 0 auto; }
+.related-row { display: flex; gap: 1rem; align-items: center; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: .7rem .9rem; text-decoration: none; color: inherit; box-shadow: var(--shadow-card); transition: transform .18s ease, border-color .18s ease; }
+.related-row:hover { transform: translateY(-2px); border-color: var(--marigold); }
+.related-row img { width: 96px; height: 72px; object-fit: cover; border-radius: var(--radius-md); flex-shrink: 0; }
+.related-text { display: flex; flex-direction: column; gap: .25rem; min-width: 0; }
+.related-row .post-badge { position: static; align-self: flex-start; }
+.related-text strong { font-family: var(--font-display); font-size: 1rem; line-height: 1.35; }
+.related-desc { font-size: .83rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.related-meta { font-size: .72rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--marigold); }
+@media (max-width: 640px) {
+  .related-row img { width: 72px; height: 56px; }
+  .related-desc { display: none; }
+}
+body.page-article { background: linear-gradient(0deg, color-mix(in srgb, var(--bg-primary) 84%, transparent), color-mix(in srgb, var(--bg-primary) 88%, transparent)), url("../images/article-bg.jpg?v=2") center top / cover no-repeat fixed, var(--bg-primary); }
+body.page-article .article-hero { background: transparent; }
 .article-page section { padding-block: 1.5rem; }
 .article-page .article-hero { padding-top: calc(var(--nav-h) + 1rem); padding-bottom: .5rem; }
 .article-page .article-meta-row { margin: .9rem 0 .3rem; }
