@@ -230,19 +230,32 @@
 
   /* ---------- Back to top ---------- */
   function initToTop() {
-    var btn = document.getElementById('to-top');
+    var ICON_UP = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>';
+    var btn = document.getElementById('to-top') || document.getElementById('back-to-top');
     if (!btn) {
       btn = document.createElement('button');
       btn.id = 'to-top';
       btn.className = 'to-top';
-      btn.setAttribute('aria-label', 'Back to top');
-      btn.textContent = '↑';
+      btn.setAttribute('type', 'button');
+      btn.setAttribute('aria-label', 'Scroll to top');
+      btn.setAttribute('title', 'Scroll to top');
+      btn.innerHTML = ICON_UP;
       document.body.appendChild(btn);
+    } else {
+      if (!btn.innerHTML || btn.textContent.trim() === '↑') btn.innerHTML = ICON_UP;
+      if (!btn.getAttribute('aria-label')) btn.setAttribute('aria-label', 'Scroll to top');
+      if (!btn.getAttribute('title')) btn.setAttribute('title', 'Scroll to top');
+      if (!btn.getAttribute('type')) btn.setAttribute('type', 'button');
     }
-    window.addEventListener('scroll', function () {
-      btn.classList.toggle('show', window.scrollY > 600);
-    }, { passive: true });
-    btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function toggle() {
+      var show = window.scrollY > 600;
+      btn.classList.toggle('show', show);
+      btn.classList.toggle('visible', show);
+    }
+    window.addEventListener('scroll', toggle, { passive: true });
+    toggle();
+    btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }); });
   }
 
   /* ---------- Smooth anchor offset ---------- */
